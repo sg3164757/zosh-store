@@ -5,48 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thunder of Zosh - Order Now</title>
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #0b1a2d; color: white; text-align: center; margin: 0; padding: 20px; }
-        .container { background: #ffffff; color: #333; max-width: 450px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .product-img { width: 100%; max-width: 250px; border-radius: 10px; margin-bottom: 20px; }
-        h1 { color: #d4af37; font-size: 24px; margin-bottom: 10px; text-transform: uppercase; }
-        p.tagline { color: #666; font-size: 14px; margin-bottom: 25px; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .privacy { font-size: 12px; color: #28a745; margin: 10px 0; font-weight: bold; }
-        button { width: 100%; padding: 15px; background: linear-gradient(45deg, #d4af37, #b8860b); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        button:hover { background: #b8860b; }
-        #thank-you-msg { display: none; color: #28a745; font-weight: bold; margin-top: 20px; font-size: 18px; }
+        body { font-family: Arial, sans-serif; background-color: #0b1a2d; color: white; text-align: center; margin: 0; padding: 20px; }
+        .container { background: white; color: #333; max-width: 400px; margin: auto; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .product-img { width: 100%; max-width: 250px; height: auto; margin-bottom: 15px; border-radius: 10px; }
+        h1 { color: #d4af37; margin: 10px 0; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: linear-gradient(45deg, #d4af37, #b8860b); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .privacy { font-size: 12px; color: #28a745; margin: 10px 0; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>THUNDER OF ZOSH</h1>
-        <p class="tagline">100% Natural Performance Gel & Capsules</p>
+        <img src="gel.jpg" alt="Thunder of Zosh" class="product-img">
         
-        <form id="leadForm" action="https://formspree.io/f/xeeazdpz" method="POST" onsubmit="showThankYou()">
-            <input type="text" name="full_name" placeholder="Aapka Poora Naam" required>
+        <h1>THUNDER OF ZOSH</h1>
+        <p>100% Natural Performance Gel</p>
+        
+        <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+            <input type="text" name="name" placeholder="Aapka Poora Naam" required>
             <input type="tel" name="phone" placeholder="WhatsApp Number" required>
             <input type="email" name="email" placeholder="Email Address" required>
-            <textarea name="full_address" placeholder="Poora Pata (Gali, Mohalla, City)" rows="3" required></textarea>
-            <input type="text" name="pincode" placeholder="Area Pin Code" required>
+            <textarea name="address" placeholder="Poora Pata (Full Address)" rows="3" required></textarea>
+            <input type="text" name="pincode" placeholder="Pin Code" required>
 
-            <p class="privacy">🔒 Aapki Privacy hamari zimmedari hai. Data 100% secure rahega.</p>
-            
-            <button type="submit" id="submitBtn">Submit & Order Now</button>
+            <p class="privacy">🔒 Aapka data 100% secure aur private rahega.</p>
+            <button type="submit">Submit & Order Now</button>
         </form>
-
-        <div id="thank-you-msg">
-            Shukriya! Aapka data mil gaya hai. Hum jaldi hi aapse contact karenge.
-        </div>
     </div>
-
-    <script>
-        function showThankYou() {
-            // Ye function form submit hone ke baad message dikhayega
-            document.getElementById('leadForm').style.display = 'none';
-            document.getElementById('thank-you-msg').style.display = 'block';
-        }
-    </script>
 
 </body>
 </html>
