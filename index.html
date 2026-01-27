@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh - Order Now</title>
+    <title>Thunder of Zosh - Official Store</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0b1a2d; color: white; text-align: center; margin: 0; padding: 15px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b1a2d; color: white; text-align: center; margin: 0; padding: 15px; }
         .container { background: #ffffff; color: #333; max-width: 420px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .product-img { width: 100%; max-width: 220px; height: auto; margin-bottom: 15px; border-radius: 12px; }
-        h1 { color: #d4af37; font-size: 26px; margin: 10px 0; text-transform: uppercase; font-weight: bold; }
+        h1 { color: #d4af37; font-size: 26px; margin: 10px 0; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .tagline { color: #555; font-size: 15px; margin-bottom: 20px; font-weight: 500; }
         input, textarea { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
-        button { width: 100%; padding: 16px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { transform: scale(1.02); }
-        .privacy { font-size: 12px; color: #28a745; margin-top: 10px; }
+        .privacy { font-size: 13px; color: #28a745; margin: 12px 0; font-weight: bold; }
+        button { width: 100%; padding: 16px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        button:hover { transform: scale(1.02); background: #128C7E; }
     </style>
 </head>
 <body>
@@ -21,39 +22,43 @@
         <img src="gel.jpg" alt="Thunder of Zosh" class="product-img">
         
         <h1>THUNDER OF ZOSH</h1>
-        <p style="color: #666;">Details bharein aur WhatsApp par Order karein</p>
+        <p class="tagline">Premium Performance Gel & Capsules</p>
         
         <form id="orderForm">
-            <input type="text" id="name" placeholder="Aapka Poora Naam" required>
+            <input type="text" id="name" placeholder="Full Name" required>
             <input type="tel" id="phone" placeholder="WhatsApp Number" required>
-            <textarea id="address" placeholder="Poora Pata aur Pin Code" rows="3" required></textarea>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <textarea id="address" placeholder="Shipping Address (with City & Pin Code)" rows="3" required></textarea>
             
-            <p class="privacy">🔒 Aapka data secure hai.</p>
+            <p class="privacy">🔒 100% Secure & Discreet Packaging</p>
+            
             <button type="button" onclick="sendToWhatsApp()">Submit & Order on WhatsApp</button>
         </form>
     </div>
 
     <script>
         function sendToWhatsApp() {
-            // Apna WhatsApp Number yahan daalein (91 ke saath)
+            // Your number is added here
             var myNumber = "919220282677"; 
 
             var name = document.getElementById('name').value;
             var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
             var address = document.getElementById('address').value;
 
-            if(name == "" || phone == "" || address == "") {
-                alert("Kripya saari details bharein!");
+            if(name == "" || phone == "" || email == "" || address == "") {
+                alert("Please fill in all the details!");
                 return;
             }
 
-            // Message format
-            var message = "*Naya Order - Thunder of Zosh*%0a%0a" + 
-                          "*Naam:* " + name + "%0a" + 
-                          "*Number:* " + phone + "%0a" + 
-                          "*Address:* " + address;
+            // Message Format
+            var message = "*NEW ORDER - THUNDER OF ZOSH*%0a%0a" + 
+                          "*Name:* " + name + "%0a" + 
+                          "*Phone:* " + phone + "%0a" + 
+                          "*Email:* " + email + "%0a" + 
+                          "*Address:* " + address + "%0a%0a" +
+                          "Please confirm my order!";
 
-            // WhatsApp link open karna
             var url = "https://wa.me/" + myNumber + "?text=" + message;
             window.open(url, '_blank').focus();
         }
