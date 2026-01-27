@@ -9,12 +9,10 @@
         .container { background: #ffffff; color: #333; max-width: 420px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .product-img { width: 100%; max-width: 220px; height: auto; margin-bottom: 15px; border-radius: 12px; }
         h1 { color: #d4af37; font-size: 26px; margin: 10px 0; text-transform: uppercase; font-weight: bold; }
-        .tagline { color: #555; font-size: 15px; margin-bottom: 20px; font-weight: 500; }
         input, textarea { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
-        .privacy { font-size: 13px; color: #28a745; margin: 12px 0; font-weight: bold; display: flex; align-items: center; justify-content: center; }
-        button { width: 100%; padding: 16px; background: linear-gradient(45deg, #d4af37, #b8860b); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #b8860b; transform: scale(1.02); }
-        #thank-you-msg { display: none; color: #28a745; font-weight: bold; margin-top: 25px; font-size: 20px; border: 2px solid #28a745; padding: 15px; border-radius: 10px; }
+        button { width: 100%; padding: 16px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.02); }
+        .privacy { font-size: 12px; color: #28a745; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -23,31 +21,41 @@
         <img src="gel.jpg" alt="Thunder of Zosh" class="product-img">
         
         <h1>THUNDER OF ZOSH</h1>
-        <p class="tagline">100% Natural Performance Gel & Capsules</p>
+        <p style="color: #666;">Details bharein aur WhatsApp par Order karein</p>
         
-        <form id="leadForm" action="https://formspree.io/f/YOUR_ID_HERE" method="POST" onsubmit="showThankYou()">
-            <input type="text" name="full_name" placeholder="Aapka Poora Naam" required>
-            <input type="tel" name="phone" placeholder="WhatsApp Number" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <textarea name="full_address" placeholder="Poora Pata (Gali, Mohalla, Shahar)" rows="3" required></textarea>
-            <input type="text" name="pincode" placeholder="Area Pin Code" required>
-
-            <p class="privacy">🔒 Aapki Privacy Hamari Zimmedari Hai.</p>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Aapka Poora Naam" required>
+            <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+            <textarea id="address" placeholder="Poora Pata aur Pin Code" rows="3" required></textarea>
             
-            <button type="submit">Order Now / Details Maange</button>
+            <p class="privacy">🔒 Aapka data secure hai.</p>
+            <button type="button" onclick="sendToWhatsApp()">Submit & Order on WhatsApp</button>
         </form>
-
-        <div id="thank-you-msg">
-            ✅ Shukriya! Aapka data mil gaya hai. <br>
-            Hum jaldi hi aapse contact karenge.
-        </div>
     </div>
 
     <script>
-        function showThankYou() {
-            // Form ko hide karke message dikhana
-            document.getElementById('leadForm').style.display = 'none';
-            document.getElementById('thank-you-msg').style.display = 'block';
+        function sendToWhatsApp() {
+            // Apna WhatsApp Number yahan daalein (91 ke saath)
+            var myNumber = "919220282677"; 
+
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+
+            if(name == "" || phone == "" || address == "") {
+                alert("Kripya saari details bharein!");
+                return;
+            }
+
+            // Message format
+            var message = "*Naya Order - Thunder of Zosh*%0a%0a" + 
+                          "*Naam:* " + name + "%0a" + 
+                          "*Number:* " + phone + "%0a" + 
+                          "*Address:* " + address;
+
+            // WhatsApp link open karna
+            var url = "https://wa.me/" + myNumber + "?text=" + message;
+            window.open(url, '_blank').focus();
         }
     </script>
 
