@@ -3,66 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh - Official Store</title>
+    <title>Thunder of Zosh | Official Brand Store</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b1a2d; color: white; text-align: center; margin: 0; padding: 15px; }
-        .container { background: #ffffff; color: #333; max-width: 420px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .product-img { width: 100%; max-width: 220px; height: auto; margin-bottom: 15px; border-radius: 12px; }
-        h1 { color: #d4af37; font-size: 26px; margin: 10px 0; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
-        .tagline { color: #555; font-size: 15px; margin-bottom: 20px; font-weight: 500; }
-        input, textarea { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
-        .privacy { font-size: 13px; color: #28a745; margin: 12px 0; font-weight: bold; }
-        button { width: 100%; padding: 16px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        button:hover { transform: scale(1.02); background: #128C7E; }
+        :root { --gold: #d4af37; --dark: #0b1a2d; --white: #ffffff; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+        
+        /* Header & Nav */
+        header { background: var(--dark); color: var(--gold); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold); }
+        nav a { color: white; text-decoration: none; margin: 0 10px; font-size: 14px; text-transform: uppercase; }
+
+        /* Hero Section */
+        .hero { background: linear-gradient(rgba(11,26,45,0.8), rgba(11,26,45,0.8)), url('gel.jpg'); background-size: cover; color: white; padding: 60px 20px; text-align: center; }
+        .hero h1 { font-size: 32px; color: var(--gold); margin: 0; }
+        
+        /* Main Container */
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        
+        /* Product Info */
+        .product-flex { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+        .product-img { flex: 1; min-width: 300px; text-align: center; }
+        .product-img img { width: 100%; max-width: 300px; border-radius: 10px; }
+        .order-form { flex: 1; min-width: 300px; }
+
+        /* Section Titles */
+        .section-title { color: var(--dark); border-left: 5px solid var(--gold); padding-left: 15px; margin: 40px 0 20px; font-size: 24px; }
+
+        /* Ingredients & Benefits */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .grid-item { background: white; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #ddd; }
+        .grid-item h3 { color: var(--gold); margin-top: 0; }
+
+        /* Form Styling */
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        .btn { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #128C7E; }
+
+        footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; font-size: 12px; }
+        .badges { margin: 20px 0; color: #28a745; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="gel.jpg" alt="Thunder of Zosh" class="product-img">
-        
-        <h1>THUNDER OF ZOSH</h1>
-        <p class="tagline">Premium Performance Gel & Capsules</p>
-        
-        <form id="orderForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="tel" id="phone" placeholder="WhatsApp Number" required>
-            <input type="email" id="email" placeholder="Email Address" required>
-            <textarea id="address" placeholder="Shipping Address (with City & Pin Code)" rows="3" required></textarea>
-            
-            <p class="privacy">🔒 100% Secure & Discreet Packaging</p>
-            
-            <button type="button" onclick="sendToWhatsApp()">Submit & Order on WhatsApp</button>
-        </form>
+<header>
+    <h1>THUNDER OF ZOSH</h1>
+    <nav>
+        <a href="#about">About</a> | <a href="#ingredients">Ingredients</a> | <a href="#order">Order Now</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Experience Supreme Vitality</h2>
+    <p>100% Ayurvedic Performance Formula for Modern Men</p>
+</section>
+
+<div class="container">
+    
+    <div id="about" class="card">
+        <h2 class="section-title">About Thunder of Zosh</h2>
+        <p>Thunder of Zosh is a premium, research-based Ayurvedic formulation designed to restore strength, stamina, and confidence. Our gel and capsules are made from the purest natural herbs, ensuring zero side effects and maximum results.</p>
+        <div class="badges">✓ GMP Certified &nbsp; ✓ ISO 9001 &nbsp; ✓ 100% Natural</div>
     </div>
 
-    <script>
-        function sendToWhatsApp() {
-            // Your number is added here
-            var myNumber = "919220282677"; 
+    <div id="order" class="product-flex">
+        <div class="product-img">
+            <img src="gel.jpg" alt="Thunder of Zosh Product">
+            <h3 style="color: #e74c3c;">Special Offer: ₹999 <del style="color: #999;">₹1999</del></h3>
+        </div>
+        <div class="order-form card">
+            <h3>Place Your Order</h3>
+            <form id="waForm">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+                <textarea id="address" placeholder="Full Delivery Address" rows="3" required></textarea>
+                <button type="button" class="btn" onclick="sendOrder()">Order via WhatsApp</button>
+            </form>
+            <p style="font-size: 12px; color: #666; margin-top: 10px;">🔒 Discreet packaging. No one will know what's inside.</p>
+        </div>
+    </div>
 
-            var name = document.getElementById('name').value;
-            var phone = document.getElementById('phone').value;
-            var email = document.getElementById('email').value;
-            var address = document.getElementById('address').value;
+    <h2 id="ingredients" class="section-title">Powerful Natural Ingredients</h2>
+    <div class="grid">
+        <div class="grid-item">
+            <h3>Ashwagandha</h3>
+            <p>Helps reduce stress and improves energy levels significantly.</p>
+        </div>
+        <div class="grid-item">
+            <h3>Safed Musli</h3>
+            <p>Known for enhancing stamina and physical performance.</p>
+        </div>
+        <div class="grid-item">
+            <h3>Shilajit</h3>
+            <p>Contains 84+ minerals to boost vitality and immunity.</p>
+        </div>
+    </div>
 
-            if(name == "" || phone == "" || email == "" || address == "") {
-                alert("Please fill in all the details!");
-                return;
-            }
+</div>
 
-            // Message Format
-            var message = "*NEW ORDER - THUNDER OF ZOSH*%0a%0a" + 
-                          "*Name:* " + name + "%0a" + 
-                          "*Phone:* " + phone + "%0a" + 
-                          "*Email:* " + email + "%0a" + 
-                          "*Address:* " + address + "%0a%0a" +
-                          "Please confirm my order!";
+<footer>
+    <p>&copy; 2026 Thunder of Zosh Official. All Rights Reserved.</p>
+    <p>Privacy Policy | Terms of Service | Contact Us</p>
+    <p>Disclaimer: Results may vary from person to person.</p>
+</footer>
 
-            var url = "https://wa.me/" + myNumber + "?text=" + message;
-            window.open(url, '_blank').focus();
-        }
-    </script>
+<script>
+    function sendOrder() {
+        var myNumber = "919220282677"; // Your Number
+        var name = document.getElementById('name').value;
+        var phone = document.getElementById('phone').value;
+        var address = document.getElementById('address').value;
+
+        if(!name || !phone || !address) { alert("Please fill all details"); return; }
+
+        var text = "*OFFICIAL BRAND ORDER*%0a%0a" +
+                   "*Name:* " + name + "%0a" +
+                   "*Phone:* " + phone + "%0a" +
+                   "*Address:* " + address + "%0a%0a" +
+                   "I want to buy Thunder of Zosh. Please confirm.";
+
+        window.open("https://wa.me/" + myNumber + "?text=" + text, '_blank');
+    }
+</script>
 
 </body>
 </html>
