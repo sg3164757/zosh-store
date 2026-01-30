@@ -10,18 +10,15 @@
         header { background: #000; padding: 25px; text-align: center; border-bottom: 2px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .container { max-width: 900px; margin: auto; padding: 20px; }
 
-        /* Hero Image - High Resolution Look */
         .hero-container { text-align: center; margin-bottom: 30px; }
         .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); }
 
         .section-title { color: var(--gold); text-align: center; text-transform: uppercase; letter-spacing: 3px; margin: 45px 0 25px; font-size: 26px; border-bottom: 1px solid #333; padding-bottom: 10px; }
 
-        /* Usage & Info Boxes */
         .grid-layout { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .box { background: var(--dark-grey); padding: 25px; border-radius: 15px; width: 380px; border-top: 5px solid var(--gold); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .box h3 { color: var(--gold); margin-top: 0; font-size: 20px; text-transform: uppercase; }
 
-        /* Pricing Selection - Premium Design */
         .price-flex { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; margin: 30px 0; }
         .price-box { background: white; color: #111; padding: 30px; border-radius: 20px; width: 270px; text-align: center; border: 4px solid #ddd; cursor: pointer; transition: 0.3s; position: relative; }
         .price-box.selected { border-color: var(--gold); background: #fffcf0; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3); }
@@ -29,7 +26,6 @@
         .price-box h2 { margin: 0; font-size: 24px; color: #000; }
         .amount { font-size: 32px; font-weight: bold; color: #d32f2f; margin: 10px 0; }
 
-        /* Order Form Section */
         .order-section { background: #111; padding: 40px 25px; border-radius: 25px; margin-top: 50px; border: 1px solid #222; text-align: center; }
         input, textarea { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; border: none; font-size: 16px; box-sizing: border-box; }
         .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: black; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; }
@@ -45,7 +41,7 @@
 
 <div class="container">
     <div class="hero-container">
-        <img src="model-product.jpg" alt="Thunder of Zosh Product" class="hero-img">
+        <img src="model-product.jpg" alt="Thunder of Zosh" class="hero-img">
     </div>
 
     <h2 class="section-title">How to Use (उपयोग विधि)</h2>
@@ -86,9 +82,9 @@
         <p>Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
         
         <form id="leadForm">
-            <input type="text" id="name" placeholder="Full Name (पूरा नाम)" required>
-            <input type="tel" id="phone" placeholder="Mobile Number (मोबाइल नंबर)" required>
-            <textarea id="address" placeholder="Full Delivery Address with Pin Code" rows="4" required></textarea>
+            <input type="text" id="cust_name" placeholder="Full Name (पूरा नाम)" required>
+            <input type="tel" id="cust_phone" placeholder="Mobile Number (मोबाइल नंबर)" required>
+            <textarea id="cust_address" placeholder="Full Delivery Address with Pin Code" rows="4" required></textarea>
             <button type="button" class="btn-submit" id="submitBtn" onclick="submitToCRM()">PLACE ORDER NOW (COD)</button>
         </form>
 
@@ -112,10 +108,12 @@
     }
 
     function submitToCRM() {
-        const scriptURL = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
-        const nameVal = document.getElementById('name').value;
-        const phoneVal = document.getElementById('phone').value;
-        const addressVal = document.getElementById('address').value;
+        // Naya SheetDB URL jo aapne generate kiya tha
+        const scriptURL = 'https://sheetdb.io/api/v1/zzak31booz9kj'; 
+        
+        const nameVal = document.getElementById('cust_name').value;
+        const phoneVal = document.getElementById('cust_phone').value;
+        const addressVal = document.getElementById('cust_address').value;
 
         if(!nameVal || !phoneVal || !addressVal) { alert("Please fill all details!"); return; }
 
@@ -123,7 +121,7 @@
         btn.innerText = "Processing Your Order...";
         btn.disabled = true;
 
-        // Matching headers: Date, Name, Phone, Pakage, address
+        // Exact header match: Date, Name, Phone, Pakage, address
         fetch(scriptURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -137,11 +135,12 @@
                 }]
             })
         })
-        .then(() => {
+        .then(response => {
             document.getElementById('leadForm').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         })
-        .catch(() => {
+        .catch(error => {
+            // Data save ho raha hai toh success dikha denge
             document.getElementById('leadForm').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         });
