@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Store</title>
+    <title>Thunder of Zosh | Official Premium Store</title>
     <style>
         :root { --gold: #d4af37; --black: #050a12; --dark-grey: #1a2a3a; --success: #25D366; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--black); color: white; line-height: 1.6; }
         header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); }
         .container { max-width: 900px; margin: auto; padding: 15px; }
 
-        /* Hero Image */
+        /* Product Image */
         .hero-container { text-align: center; margin: 20px 0; }
         .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
 
@@ -28,16 +28,19 @@
         .price-box h2 { margin: 0; color: #000; }
         .amount { font-size: 30px; font-weight: bold; color: #e74c3c; margin: 10px 0; }
 
-        /* Order Form */
-        .order-section { background: var(--dark-grey); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; }
-        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; box-sizing: border-box; }
+        /* CRM Form */
+        .order-section { background: var(--dark-grey); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: center; }
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; box-sizing: border-box; background: #fff; color: #333; }
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .btn-submit:disabled { background: #555; cursor: not-allowed; }
+        
+        #success-msg { display: none; background: rgba(37, 211, 102, 0.1); border: 1px solid var(--success); color: var(--success); padding: 20px; border-radius: 15px; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="color:var(--gold); margin:0;">THUNDER OF ZOSH</h1>
+    <h1 style="color:var(--gold); margin:0; letter-spacing: 2px;">THUNDER OF ZOSH</h1>
 </header>
 
 <div class="container">
@@ -45,19 +48,19 @@
         <img src="model-product.jpg" alt="Thunder of Zosh" class="hero-img">
     </div>
 
-    <h2 class="section-title">How to Use (उपयोग विधि)</h2>
+    <h2 class="section-title">उपयोग करने का तरीका</h2>
     <div class="usage-flex">
         <div class="usage-box">
-            <h3>⚡ Performance Gel</h3>
-            <p>Front part aur shaft par halke haath se massage karein jab tak absorb na ho jaye.</p>
+            <h3>⚡ Zosh Gel</h3>
+            <p>लिंग के अगले हिस्से और शाफ्ट पर हल्के हाथों से मसाज करें।</p>
         </div>
         <div class="usage-box">
-            <h3>💊 Power Capsules</h3>
-            <p>Raat ko sone se pehle 1 capsule gungune doodh ya pani ke saath lein.</p>
+            <h3>💊 Zosh Capsules</h3>
+            <p>रात को सोने से पहले एक कैप्सूल गुनगुने दूध या पानी के साथ लें।</p>
         </div>
     </div>
 
-    <h2 class="section-title">Choose Your Pack</h2>
+    <h2 class="section-title">अपना पैक चुनें</h2>
     <div class="price-flex">
         <div class="price-box" id="pkg1" onclick="updateSelection('Single Bottle', '2999', 'pkg1')">
             <h2>Single Bottle</h2>
@@ -66,19 +69,24 @@
         <div class="price-box selected" id="pkg2" onclick="updateSelection('Combo Pack', '3999', 'pkg2')">
             <h2>Combo Pack</h2>
             <div class="amount">₹3,999</div>
-            <p style="color: var(--success); font-weight: bold;">(Most Recommended)</p>
+            <p style="color: var(--success); font-weight: bold;">(Recommended)</p>
         </div>
     </div>
 
     <div class="order-section">
-        <h3 style="text-align:center; color: var(--gold); margin-top:0;">Secure Order Form</h3>
-        <p style="text-align:center;">Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
-        <form id="waOrder">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="tel" id="phone" placeholder="WhatsApp Number" required>
-            <textarea id="address" placeholder="Full Address with Pin Code" rows="3" required></textarea>
-            <button type="button" class="btn-submit" onclick="sendWhatsApp()">ORDER ON WHATSAPP</button>
+        <h3 style="color: var(--gold); margin-top:0;">Order Confirmation Form</h3>
+        <p>Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
+        
+        <form id="leadForm">
+            <input type="text" id="name" placeholder="Full Name (पूरा नाम)" required>
+            <input type="tel" id="phone" placeholder="Mobile Number (मोबाइल नंबर)" required>
+            <textarea id="address" placeholder="Full Address with Pin Code (पूरा पता और पिन कोड)" rows="3" required></textarea>
+            <button type="button" class="btn-submit" id="submitBtn" onclick="submitToSheet()">PLACE ORDER (CASH ON DELIVERY)</button>
         </form>
+
+        <div id="success-msg">
+            ✅ Order Successful! Humari team aapko jald hi call karegi.
+        </div>
     </div>
 </div>
 
@@ -90,22 +98,45 @@
         selectedName = name;
         selectedPrice = price;
         document.getElementById('display-pkg').innerText = name + " - ₹" + price;
-        
         document.getElementById('pkg1').classList.remove('selected');
         document.getElementById('pkg2').classList.remove('selected');
         document.getElementById(id).classList.add('selected');
     }
 
-    function sendWhatsApp() {
-        var myNumber = "919220282677"; //
-        var name = document.getElementById('name').value;
-        var phone = document.getElementById('phone').value;
-        var address = document.getElementById('address').value;
+    function submitToSheet() {
+        const scriptURL = 'https://sheetdb.io/api/v1/nba1ofpu1lpc1'; //
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
 
         if(!name || !phone || !address) { alert("Please fill all details!"); return; }
 
-        var text = `*NEW ORDER*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Package:* ${selectedName}%0A*Price:* ₹${selectedPrice}%0A*Address:* ${address}`;
-        window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Sending Order...";
+        btn.disabled = true;
+
+        fetch(scriptURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "data": [{
+                    "Name": name,
+                    "Phone": phone,
+                    "Address": address,
+                    "Package": selectedName + " - ₹" + selectedPrice,
+                    "Date": new Date().toLocaleString()
+                }]
+            })
+        })
+        .then(response => {
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        })
+        .catch(error => {
+            alert("Error saving order. Please try again!");
+            btn.innerText = "PLACE ORDER";
+            btn.disabled = false;
+        });
     }
 </script>
 
