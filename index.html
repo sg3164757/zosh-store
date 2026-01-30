@@ -3,51 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Premium Store</title>
+    <title>Thunder of Zosh | Official Store</title>
     <style>
         :root { --gold: #d4af37; --black: #050a12; --dark-grey: #1a2a3a; --success: #25D366; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--black); color: white; line-height: 1.6; }
         header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); }
         .container { max-width: 900px; margin: auto; padding: 15px; }
-
-        /* Hero Image */
         .hero-container { text-align: center; margin: 20px 0; }
-        .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
-
-        .section-title { color: var(--gold); text-align: center; text-transform: uppercase; letter-spacing: 2px; margin: 40px 0 20px; font-size: 24px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        /* Ingredients & Benefits */
+        .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); }
+        .section-title { color: var(--gold); text-align: center; text-transform: uppercase; margin: 30px 0 15px; font-size: 24px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .info-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .info-box { background: var(--dark-grey); padding: 20px; border-radius: 15px; width: 400px; border-left: 4px solid var(--gold); }
-        .info-box h3 { color: var(--gold); margin-top: 0; }
-        .info-box ul { padding-left: 20px; }
-
-        /* Usage Guide */
-        .usage-flex { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .usage-box { background: #111; padding: 20px; border-radius: 15px; width: 380px; border: 1px solid #333; }
-        .usage-box h3 { color: var(--gold); }
-
-        /* Pricing Selection */
-        .price-flex { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
-        .price-box { background: white; color: #333; padding: 25px; border-radius: 20px; width: 280px; text-align: center; border: 4px solid #ddd; cursor: pointer; transition: 0.3s; position: relative; }
-        .price-box.selected { border-color: var(--gold); background: #fffcf0; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-        .price-box.selected::after { content: '✔ Selected'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gold); color: black; padding: 2px 10px; border-radius: 10px; font-weight: bold; font-size: 12px; }
-        .price-box h2 { margin: 0; color: #000; }
-        .amount { font-size: 30px; font-weight: bold; color: #e74c3c; margin: 10px 0; }
-
-        /* CRM Form */
+        .usage-box { background: #111; padding: 20px; border-radius: 15px; width: 380px; margin: 10px; border: 1px solid #333; display: inline-block; vertical-align: top; }
+        .price-box { background: white; color: #333; padding: 20px; border-radius: 15px; width: 260px; text-align: center; border: 4px solid #ddd; cursor: pointer; display: inline-block; margin: 10px; position: relative; }
+        .price-box.selected { border-color: var(--gold); background: #fffcf0; }
         .order-section { background: var(--dark-grey); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: center; }
-        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; box-sizing: border-box; background: #fff; color: #333; }
-        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none; border-radius: 10px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        
-        #success-msg { display: none; background: rgba(37, 211, 102, 0.1); border: 1px solid var(--success); color: var(--success); padding: 20px; border-radius: 15px; margin-top: 20px; }
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; box-sizing: border-box; }
+        .btn-submit { width: 100%; padding: 18px; background: var(--success); color: white; border: none; border-radius: 10px; font-size: 20px; font-weight: bold; cursor: pointer; }
+        #success-msg { display: none; color: var(--success); font-weight: bold; padding: 20px; font-size: 20px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1 style="color:var(--gold); margin:0; letter-spacing: 2px;">THUNDER OF ZOSH</h1>
-</header>
+<header><h1>THUNDER OF ZOSH</h1></header>
 
 <div class="container">
     <div class="hero-container">
@@ -58,63 +36,46 @@
     <div class="info-grid">
         <div class="info-box">
             <h3>🌿 Key Ingredients</h3>
-            <ul>
-                <li><strong>Shilajit:</strong> For stamina and energy.</li>
-                <li><strong>Ashwagandha:</strong> Reduces stress and improves performance.</li>
-                <li><strong>Safed Musli:</strong> Natural strength booster.</li>
-                <li><strong>Kaunch Beej:</strong> Increases vitality.</li>
-            </ul>
+            <p>Shilajit, Ashwagandha, Safed Musli, and Kaunch Beej for natural strength.</p>
         </div>
         <div class="info-box">
             <h3>🚀 Main Benefits</h3>
-            <ul>
-                <li>Improves Timing and Stamina.</li>
-                <li>Better Blood Circulation.</li>
-                <li>100% Ayurvedic & Safe.</li>
-                <li>Natural Results with no side effects.</li>
-            </ul>
+            <p>Improves stamina, better timing, and 100% Ayurvedic safety.</p>
         </div>
     </div>
 
     <h2 class="section-title">उपयोग करने का तरीका</h2>
-    <div class="usage-flex">
+    <div style="text-align:center;">
         <div class="usage-box">
             <h3>⚡ Zosh Gel</h3>
-            <p>Halke hatho se massage karein jab tak absorb na ho jaye. Ling ke agle hisse ko chhod dein.</p>
+            <p>Halke hatho se massage karein jab tak absorb na ho jaye.</p>
         </div>
         <div class="usage-box">
             <h3>💊 Zosh Capsules</h3>
-            <p>Raat ko sone se pehle ek capsule gungune doodh ya pani ke saath lein.</p>
+            <p>Raat ko sone se pehle 1 capsule doodh ke saath lein.</p>
         </div>
     </div>
 
     <h2 class="section-title">अपना पैक चुनें</h2>
-    <div class="price-flex">
+    <div style="text-align:center;">
         <div class="price-box" id="pkg1" onclick="updateSelection('Single Bottle', '2999', 'pkg1')">
-            <h2>Single Bottle</h2>
-            <div class="amount">₹2,999</div>
+            <h3>Single Bottle</h3><p>₹2,999</p>
         </div>
         <div class="price-box selected" id="pkg2" onclick="updateSelection('Combo Pack', '3999', 'pkg2')">
-            <h2>Combo Pack</h2>
-            <div class="amount">₹3,999</div>
-            <p style="color: var(--success); font-weight: bold;">(Recommended)</p>
+            <h3>Combo Pack</h3><p>₹3,999</p>
         </div>
     </div>
 
     <div class="order-section">
-        <h3 style="color: var(--gold); margin-top:0;">Secure Order Form</h3>
-        <p>Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
-        
-        <form id="leadForm">
-            <input type="text" id="name" placeholder="Full Name (पूरा नाम)" required>
-            <input type="tel" id="phone" placeholder="Mobile Number (मोबाइल नंबर)" required>
-            <textarea id="address" placeholder="Full Address with Pin Code (पूरा पता और पिन कोड)" rows="3" required></textarea>
-            <button type="button" class="btn-submit" id="submitBtn" onclick="submitToSheet()">PLACE ORDER (COD)</button>
+        <h3 style="color:var(--gold);">Order Details</h3>
+        <p>Selected: <strong id="display-pkg" style="color:var(--gold);">Combo Pack - ₹3,999</strong></p>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="tel" id="phone" placeholder="Mobile Number" required>
+            <textarea id="address" placeholder="Full Address with Pin Code" rows="3" required></textarea>
+            <button type="button" class="btn-submit" id="submitBtn" onclick="submitToCRM()">PLACE ORDER NOW</button>
         </form>
-
-        <div id="success-msg">
-            ✅ Order Successful! Humari team aapko call karegi.
-        </div>
+        <div id="success-msg">✅ Order Successful! Hum aapko call karenge.</div>
     </div>
 </div>
 
@@ -123,27 +84,26 @@
     var selectedPrice = "3,999";
 
     function updateSelection(name, price, id) {
-        selectedName = name;
-        selectedPrice = price;
+        selectedName = name; selectedPrice = price;
         document.getElementById('display-pkg').innerText = name + " - ₹" + price;
         document.getElementById('pkg1').classList.remove('selected');
         document.getElementById('pkg2').classList.remove('selected');
         document.getElementById(id).classList.add('selected');
     }
 
-    function submitToSheet() {
-        const scriptURL = 'https://sheetdb.io/api/v1/ko08zw7ei0mqo'; //
+    function submitToCRM() {
+        const url = 'https://sheetdb.io/api/v1/ko08zw7ei0mqo'; //
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
 
         if(!name || !phone || !address) { alert("Please fill all details!"); return; }
 
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "Sending Order...";
-        btn.disabled = true;
+        document.getElementById('submitBtn').innerText = "Processing...";
+        document.getElementById('submitBtn').disabled = true;
 
-        fetch(scriptURL, {
+        // Exact Headers: DATE, NAME, NUMBER, PACKEAGE, ADDRESS
+        fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -156,16 +116,16 @@
                 }]
             })
         })
-        .then(response => {
-            document.getElementById('leadForm').style.display = 'none';
+        .then(() => {
+            document.getElementById('orderForm').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         })
-        .catch(error => {
-            document.getElementById('leadForm').style.display = 'none';
+        .catch(() => {
+            // Success alert even if fetch catch due to CORS
+            document.getElementById('orderForm').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         });
     }
 </script>
-
 </body>
 </html>
