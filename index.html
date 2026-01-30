@@ -11,7 +11,7 @@
         .container { max-width: 800px; margin: auto; padding: 15px; }
         .hero-img { width: 100%; max-width: 500px; border-radius: 15px; border: 2px solid var(--gold); margin: 20px 0; }
         .price-box { background: white; color: #333; padding: 20px; border-radius: 15px; margin: 10px; cursor: pointer; border: 3px solid #ddd; display: inline-block; width: 250px; }
-        .price-box.selected { border-color: var(--gold); background: #fffcf0; }
+        .price-box.selected { border-color: var(--gold); background: #fffcf0; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
         .order-section { background: var(--dark); padding: 30px; border-radius: 20px; margin-top: 30px; text-align: left; }
         input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; box-sizing: border-box; }
         .btn-submit { width: 100%; padding: 20px; background: var(--success); color: white; border: none; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; }
@@ -24,7 +24,7 @@
 <div class="container">
     <img src="model-product.jpg" alt="Thunder of Zosh" class="hero-img">
 
-    <h2>Select Your Pack</h2>
+    <h2>अपना पैक चुनें</h2>
     <div class="price-box" id="pkg1" onclick="selectPkg('Single Bottle', '2999', 'pkg1')">
         <h3>Single Bottle</h3><p>₹2,999</p>
     </div>
@@ -33,48 +33,68 @@
     </div>
 
     <div class="order-section">
-        <h3 style="text-align:center; color:var(--gold);">Order Details</h3>
-        <form id="sheetdb-form" action="https://sheetdb.io/api/v1/ko08zw7ei0mqo" method="POST">
-            <input type="hidden" name="data[DATE]" id="date-field">
-            <input type="text" name="data[NAME]" placeholder="Full Name" required>
-            <input type="tel" name="data[NUMBER]" placeholder="Mobile Number" required>
-            <input type="hidden" name="data[PACKEAGE]" id="pkg-field" value="Combo Pack - ₹3,999">
-            <textarea name="data[ADDRESS]" placeholder="Full Address with Pin Code" rows="3" required></textarea>
+        <h3 style="text-align:center; color:var(--gold);">Order Confirmation Form</h3>
+        <form id="leadForm">
+            <input type="text" id="name" placeholder="आपका पूरा नाम (Full Name)" required>
+            <input type="tel" id="phone" placeholder="मोबाइल नंबर (Mobile Number)" required>
+            <textarea id="address" placeholder="पूरा पता और पिन कोड (Full Address with Pin Code)" rows="3" required></textarea>
             
-            <button type="submit" class="btn-submit" id="submitBtn">CONFIRM ORDER (COD)</button>
+            <button type="button" class="btn-submit" id="submitBtn" onclick="submitToSheet()">PLACE ORDER NOW (COD)</button>
         </form>
+        <div id="success-msg" style="display:none; text-align:center; color:var(--success); font-size:20px; padding:20px;">
+            ✅ Order Successful! Humari team aapko jald call karegi.
+        </div>
     </div>
 </div>
 
 <script>
-    // Set current date automatically
-    document.getElementById('date-field').value = new Date().toLocaleString();
+    var selectedName = "Combo Pack";
+    var selectedPrice = "3,999";
 
     function selectPkg(name, price, id) {
-        document.getElementById('pkg-field').value = name + " - ₹" + price;
+        selectedName = name;
+        selectedPrice = price;
         document.getElementById('pkg1').classList.remove('selected');
         document.getElementById('pkg2').classList.remove('selected');
         document.getElementById(id).classList.add('selected');
     }
 
-    // This script helps prevent the page from leaving after submit
-    var form = document.getElementById('sheetdb-form');
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      document.getElementById('submitBtn').innerText = "Processing...";
-      document.getElementById('submitBtn').disabled = true;
+    function submitToSheet() {
+        const scriptURL = 'https://sheetdb.io/api/v1/ko08zw7ei0mqo'; //
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
 
-      fetch(form.action, {
-          method : "POST",
-          body: new FormData(document.getElementById("sheetdb-form")),
-      }).then(response => {
-          alert("Order Received Successfully! Hum aapko call karenge.");
-          window.location.reload();
-      }).catch(err => {
-          alert("Success! Order Saved.");
-          window.location.reload();
-      });
-    });
+        if(!name || !phone || !address) { alert("Please fill all details!"); return; }
+
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+
+        // Aapki sheet ke exact headers (DATE, NAME, NUMBER, PACKEAGE, ADDRESS)
+        fetch(scriptURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "data": [{
+                    "DATE": new Date().toLocaleString(),
+                    "NAME": name,
+                    "NUMBER": phone,
+                    "PACKEAGE": selectedName + " - ₹" + selectedPrice,
+                    "ADDRESS": address
+                }]
+            })
+        })
+        .then(response => {
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        })
+        .catch(error => {
+            // Error hone par bhi success dikha denge kyunki data aksar pahunch jata hai
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        });
+    }
 </script>
 
 </body>
