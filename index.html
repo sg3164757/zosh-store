@@ -74,7 +74,7 @@
     </div>
 
     <div class="order-section">
-        <h3 style="color: var(--gold); margin-top:0;">Order Confirmation Form</h3>
+        <h3 style="color: var(--gold); margin-top:0;">Secure Checkout</h3>
         <p>Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
         
         <form id="leadForm">
@@ -104,7 +104,7 @@
     }
 
     function submitToSheet() {
-        const scriptURL = 'https://sheetdb.io/api/v1/nba1ofpu1lpc1'; //
+        const scriptURL = 'https://sheetdb.io/api/v1/nba1ofpu1lpc1'; // Aapka sahi API URL
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
@@ -115,16 +115,17 @@
         btn.innerText = "Sending Order...";
         btn.disabled = true;
 
+        // Aapki sheet ke exact headers match karna (DATE, NAME, NUMBER, PACKEAGE, ADDRESS)
         fetch(scriptURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 "data": [{
-                    "Name": name,
-                    "Phone": phone,
-                    "Address": address,
-                    "Package": selectedName + " - ₹" + selectedPrice,
-                    "Date": new Date().toLocaleString()
+                    "DATE": new Date().toLocaleString(),
+                    "NAME": name,
+                    "NUMBER": phone,
+                    "PACKEAGE": selectedName + " - ₹" + selectedPrice,
+                    "ADDRESS": address
                 }]
             })
         })
