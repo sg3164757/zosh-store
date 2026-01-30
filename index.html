@@ -46,11 +46,11 @@
     <div class="grid-layout">
         <div class="box">
             <h3>⚡ Performance Gel</h3>
-            <p>Halke haath se ling par massage karein jab tak ki gel absorb na ho jaye.</p>
+            <p>Raat ko sone se pehle halke haath se ling par massage karein jab tak ki gel absorb na ho jaye.</p>
         </div>
         <div class="box">
             <h3>💊 Power Capsules</h3>
-            <p>Raat ko khana khane ke baad ek capsule doodh ya pani ke saath lein.</p>
+            <p>Har roz raat ko khana khane ke baad ek capsule gungune doodh ya pani ke saath lein.</p>
         </div>
     </div>
 
@@ -58,7 +58,7 @@
     <div class="grid-layout">
         <div class="box">
             <h3>🌿 Key Herbs</h3>
-            <p>Shilajit, Ashwagandha, aur Safed Musli ka shuddh mishran.</p>
+            <p>Shilajit, Ashwagandha, aur Safed Musli ka shuddh ayurvedic mishran jo stamina badhane mein madad karta hai.</p>
         </div>
     </div>
 
@@ -102,7 +102,9 @@
     }
 
     function submitToCRM() {
-        const scriptURL = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
+        // Naya SheetDB URL
+        const scriptURL = 'https://sheetdb.io/api/v1/zzak31booz9kj'; 
+        
         const nameVal = document.getElementById('cust_name').value;
         const phoneVal = document.getElementById('cust_phone').value;
         const addressVal = document.getElementById('cust_address').value;
@@ -113,14 +115,14 @@
         btn.innerText = "Processing Your Order...";
         btn.disabled = true;
 
-        // Correct Mapping: Date, Name, Phone, Pakage, address
+        // Exact header match: Date, Name, Phone, Pakage, address
         fetch(scriptURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 "data": [{
                     "Date": new Date().toLocaleString(),
-                    "Name": nameVal,
+                    "Name": nameVal, // Fixed: 'Name' matches the header exactly
                     "Phone": phoneVal,
                     "Pakage": selectedName + " - ₹" + selectedPrice,
                     "address": addressVal
