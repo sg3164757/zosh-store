@@ -3,124 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form | Thunder of Zosh</title>
+    <title>Thunder of Zosh | Official Order Form</title>
     <style>
-        :root { --gold: #d4af37; --black: #111; --white: #fff; --error: #ff4d4d; }
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; color: #333; }
-        .form-card { max-width: 450px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 5px solid var(--gold); }
+        :root { --gold: #d4af37; --black: #050a12; }
+        body { font-family: Arial, sans-serif; background-color: #000; margin: 0; padding: 10px; color: white; text-align: center; }
         
-        /* Choti Product Image */
-        .header-flex { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .product-thumb { width: 70px; height: 70px; border-radius: 8px; border: 1px solid #ddd; object-fit: cover; }
-        .header-text h2 { margin: 0; font-size: 18px; color: var(--black); }
+        /* Container Design */
+        .order-container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 15px; overflow: hidden; border: 3px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
         
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 13px; color: #555; }
-        input, textarea, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
-        input:focus { border-color: var(--gold); outline: none; }
+        /* Choti Product Image & Header */
+        .form-header { background: #000; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 15px; border-bottom: 2px solid var(--gold); }
+        .thumb { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+        .form-header h2 { color: var(--gold); font-size: 18px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Google Form Integration */
+        .iframe-wrapper { position: relative; width: 100%; height: 950px; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
         
-        .error { color: var(--error); font-size: 12px; display: none; margin-top: 5px; }
-
-        /* Package Selection */
-        .pkg-box { margin-top: 20px; padding: 15px; background: #fffcf0; border: 1px dashed var(--gold); border-radius: 8px; }
-
-        .btn-order { width: 100%; padding: 18px; background: var(--gold); color: black; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; }
-        .btn-order:hover { background: #b8860b; }
-
-        #success { display: none; text-align: center; padding: 20px; color: #28a745; font-weight: bold; }
+        .footer-note { font-size: 12px; color: #888; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="form-card">
-    <div class="header-flex">
-        <img src="model-product.jpg" class="product-thumb" alt="Product">
-        <div class="header-text">
-            <h2>Thunder of Zosh</h2>
-            <p style="margin:2px 0; font-size:12px; color:#888;">Order Confirmation Form</p>
-        </div>
+<div class="order-container">
+    <div class="form-header">
+        <img src="model-product.jpg" class="thumb" alt="Thunder of Zosh">
+        <h2>Order Now (C.O.D)</h2>
     </div>
 
-    <form id="orderForm">
-        <label>FULL NAME (पूरा नाम)</label>
-        <input type="text" id="name" placeholder="Enter full name" required>
-        <div id="name-err" class="error">Naam bharna zaroori hai (kam se kam 3 akshar).</div>
-
-        <label>MOBILE NUMBER (मोबाइल नंबर)</label>
-        <input type="tel" id="phone" placeholder="10 digit number" maxlength="10" required>
-        <div id="phone-err" class="error">Sahi 10-digit number bharein.</div>
-
-        <label>CHOOSE PACKAGE (पैक चुनें)</label>
-        <select id="package">
-            <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
-            <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
-        </select>
-
-        <label>FULL ADDRESS (पूरा पता और पिन कोड)</label>
-        <textarea id="address" placeholder="House no, Area, City, Pincode" rows="3" required></textarea>
-        <div id="address-err" class="error">Pura pata bharein (kam se kam 10 akshar).</div>
-
-        <button type="button" class="btn-order" id="orderBtn" onclick="processOrder()">PLACE ORDER (COD)</button>
-    </form>
-
-    <div id="success">
-        ✅ ORDER PLACED!<br>Team aapko confirm karne ke liye call karegi.
+    <div class="iframe-wrapper">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWhniN486lFyY95w6QNIEPPcAu7fr1vA-Ybhzm5ilKU-R8xQ/viewform?embedded=true">
+            Loading…
+        </iframe>
     </div>
 </div>
 
-<script>
-    function processOrder() {
-        // Reset Errors
-        document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
-        
-        const n = document.getElementById('name').value.trim();
-        const p = document.getElementById('phone').value.trim();
-        const a = document.getElementById('address').value.trim();
-        const pkg = document.getElementById('package').value;
-        const phoneRegex = /^[0-9]{10}$/;
-
-        let valid = true;
-
-        if (n.length < 3) { document.getElementById('name-err').style.display = 'block'; valid = false; }
-        if (!phoneRegex.test(p)) { document.getElementById('phone-err').style.display = 'block'; valid = false; }
-        if (a.length < 10) { document.getElementById('address-err').style.display = 'block'; valid = false; }
-
-        if (valid) {
-            submitData(n, p, a, pkg);
-        }
-    }
-
-    function submitData(n, p, a, pkg) {
-        const url = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
-        const btn = document.getElementById('orderBtn');
-        btn.innerText = "Processing...";
-        btn.disabled = true;
-
-        // Headers strictly lowercase as per your latest sheet
-        const payload = {
-            "data": [{
-                "date": new Date().toLocaleString(),
-                "name": n,
-                "phone": p,
-                "package": pkg,
-                "address": a
-            }]
-        };
-
-        fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(() => {
-            document.getElementById('orderForm').style.display = 'none';
-            document.getElementById('success').style.display = 'block';
-        })
-        .catch(() => {
-            document.getElementById('orderForm').style.display = 'none';
-            document.getElementById('success').style.display = 'block';
-        });
-    }
-</script>
+<p class="footer-note">🛡️ 100% Secure & Private Cash on Delivery</p>
 
 </body>
 </html>
