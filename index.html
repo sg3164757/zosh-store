@@ -3,40 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Now | Thunder of Zosh</title>
+    <title>Thunder of Zosh | Official Store</title>
     <style>
-        :root { --gold: #d4af37; --black: #050a12; }
-        body { font-family: Arial, sans-serif; background-color: #000; margin: 0; padding: 10px; color: white; text-align: center; }
+        :root { --gold: #d4af37; --black: #0a0a0a; --white: #ffffff; }
+        body { font-family: 'Poppins', Arial, sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 20px; }
         
-        .order-container { max-width: 500px; margin: 20px auto; background: #fff; border-radius: 15px; overflow: hidden; border: 3px solid var(--gold); box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); }
+        /* Premium Card Design */
+        .order-box { max-width: 450px; margin: auto; background: #151515; padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2); text-align: center; }
         
-        .form-header { background: #000; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 15px; border-bottom: 2px solid var(--gold); }
-        .thumb { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
-        .form-header h2 { color: var(--gold); font-size: 18px; margin: 0; text-transform: uppercase; }
+        .product-header img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; }
+        h2 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
 
-        /* Form Height adjusted to show Submit button clearly */
-        .iframe-wrapper { width: 100%; height: 900px; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
-        
-        .footer-note { font-size: 11px; color: #666; margin-top: 15px; }
+        /* Custom Form Look (Not Google Form) */
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-size: 12px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; }
+        input:focus { border-color: var(--gold); outline: none; }
+
+        .btn-order { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: #000; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; transition: 0.3s; }
+        .btn-order:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+
+        #thank-you { display: none; padding: 40px 20px; color: #28a745; font-size: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="order-container">
-    <div class="form-header">
-        <img src="model-product.jpg" class="thumb" alt="Zosh">
-        <h2>Thunder of Zosh - Order Form</h2>
+<div class="order-box">
+    <div class="product-header">
+        <img src="model-product.jpg" alt="Thunder of Zosh">
+        <h2>Order Now</h2>
     </div>
 
-    <div class="iframe-wrapper">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQa1JQqBhw5rNL37RLd6u5KYd4KyzGKM0ARjvQ6qbaiAK-WQ/viewform?embedded=true">
-            Loading…
-        </iframe>
+    <form id="premiumForm">
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="u_name" placeholder="Apna pura naam likhein" required minlength="3">
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="tel" id="u_phone" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="input-group">
+            <label>Select Pack</label>
+            <select id="u_pack">
+                <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
+                <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Delivery Address</label>
+            <textarea id="u_address" rows="3" placeholder="Pura pata aur Pin Code" required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn-order" id="submitBtn">Confirm Order (COD)</button>
+    </form>
+
+    <div id="thank-you">
+        ✅ ORDER PLACED!<br>Humari team aapko jald call karegi.
     </div>
 </div>
 
-<p class="footer-note">Your privacy is our priority. 100% Secure Delivery.</p>
+<script>
+    document.getElementById('premiumForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Processing...";
+        btn.disabled = true;
 
-</body>
-</html>
+        const formData = {
+            "Timestamp": new Date().toLocaleString(),
+            "Name": document.getElementById('u_name').value,
+            "Phone number": document.getElementById('u_phone').value,
+            "package":
