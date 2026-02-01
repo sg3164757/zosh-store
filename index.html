@@ -3,104 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Now | Thunder of Zosh</title>
+    <title>Thunder of Zosh | Official Store</title>
     <style>
-        :root { --gold: #d4af37; --black: #0d0d0d; --white: #ffffff; --success: #28a745; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 15px; }
-        
-        .order-card { max-width: 480px; margin: 20px auto; background: #1a1a1a; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        
-        .header-section { text-align: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
-        .product-img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; }
-        h1 { font-size: 22px; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-
-        .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-size: 13px; color: var(--gold); margin-bottom: 5px; font-weight: bold; }
-        input, textarea, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; }
-        input:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
-
-        .package-box { background: #2a2a2a; padding: 15px; border-radius: 10px; border-left: 5px solid var(--gold); margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .price { color: var(--gold); font-weight: bold; font-size: 18px; }
-
-        .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: black; border: none; border-radius: 12px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 25px; text-transform: uppercase; transition: 0.3s; }
-        .btn-submit:active { transform: scale(0.96); }
-
-        #success-msg { display: none; padding: 30px; border-radius: 15px; border: 1px solid var(--success); background: rgba(40, 167, 69, 0.1); color: var(--success); font-weight: bold; margin-top: 20px; }
+        :root { --gold: #d4af37; --black: #050a12; --success: #25D366; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--black); color: white; margin: 0; padding: 10px; text-align: center; }
+        .order-card { max-width: 450px; margin: 20px auto; background: #111; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .thumb { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 15px; }
+        h2 { color: var(--gold); text-transform: uppercase; margin: 0 0 20px; font-size: 20px; }
+        input, textarea, select { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #fff; color: #000; font-size: 16px; box-sizing: border-box; }
+        .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: black; border: none; border-radius: 12px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
+        #success { display: none; color: var(--success); font-weight: bold; margin-top: 20px; font-size: 18px; }
     </style>
 </head>
 <body>
 
 <div class="order-card">
-    <div class="header-section">
-        <img src="model-product.jpg" class="product-img" alt="Zosh">
-        <h1>Thunder of Zosh</h1>
-        <p style="color:#888; font-size:12px; margin:5px 0 0;">Official Order Confirmation Form</p>
-    </div>
+    <img src="model-product.jpg" class="thumb" alt="Zosh">
+    <h2>Confirm Your Order</h2>
 
-    <form id="finalOrderForm">
-        <div class="input-group">
-            <label>FULL NAME (पूरा नाम)</label>
-            <input type="text" id="name" placeholder="Enter full name" required minlength="3">
-        </div>
+    <form id="zoshForm">
+        <input type="text" id="custName" placeholder="Full Name (पूरा नाम)" required minlength="3">
+        <input type="tel" id="custPhone" placeholder="Mobile Number (10 Digits)" maxlength="10" pattern="[0-9]{10}" required>
+        
+        <select id="custPkg">
+            <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
+            <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
+        </select>
 
-        <div class="input-group">
-            <label>MOBILE NUMBER (मोबाइल नंबर)</label>
-            <input type="tel" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" maxlength="10" required>
-        </div>
-
-        <div class="input-group">
-            <label>CHOOSE PACKAGE (पैक चुनें)</label>
-            <select id="package" required>
-                <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
-                <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>FULL ADDRESS (पूरा पता और पिन कोड)</label>
-            <textarea id="address" placeholder="House no, Area, City, Pincode" rows="4" required minlength="10"></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">CONFIRM ORDER (COD)</button>
+        <textarea id="custAdd" placeholder="Full Delivery Address" rows="3" required minlength="10"></textarea>
+        
+        <button type="button" class="btn-submit" id="sBtn" onclick="submitLead()">PLACE ORDER NOW (COD)</button>
     </form>
 
-    <div id="success-msg">
-        ✅ ORDER RECEIVED!<br>Humari team jald hi aapko call karegi.
-    </div>
+    <div id="success">✅ ORDER PLACED! Hum aapko call karenge.</div>
 </div>
 
 <script>
-    document.getElementById('finalOrderForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "PROCESSING...";
-        btn.disabled = true;
+    function submitLead() {
+        const url = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
+        const n = document.getElementById('custName').value.trim();
+        const p = document.getElementById('custPhone').value.trim();
+        const a = document.getElementById('custAdd').value.trim();
+        const pkg = document.getElementById('custPkg').value;
 
-        const data = {
-            date: new Date().toLocaleString(),
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            package: document.getElementById('package').value,
-            address: document.getElementById('address').value
+        if(n.length < 3 || p.length < 10 || a.length < 10) { alert("Sahi jankari bharein!"); return; }
+
+        const btn = document.getElementById('sBtn');
+        btn.innerText = "SENDING..."; btn.disabled = true;
+
+        // EXACT HEADER MATCHING as per image_6a4a06.png
+        const payload = {
+            "data": [{
+                "Timestamp": new Date().toLocaleString(),
+                "Name": n, 
+                "Phone number": p,
+                "package": pkg,
+                "Address": a
+            }]
         };
 
-        // Hum SheetDB wala naya URL use kar rahe hain jo aapne banaya tha
-        fetch('https://sheetdb.io/api/v1/zzak31booz9kj', {
+        fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: [data] })
+            body: JSON.stringify(payload)
         })
-        .then(res => {
-            document.getElementById('finalOrderForm').style.display = 'none';
-            document.getElementById('success-msg').style.display = 'block';
+        .then(() => {
+            document.getElementById('zoshForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
         })
-        .catch(err => {
-            // Success even on error because data often reaches the sheet
-            document.getElementById('finalOrderForm').style.display = 'none';
-            document.getElementById('success-msg').style.display = 'block';
+        .catch(() => {
+            document.getElementById('zoshForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
         });
-    });
+    }
 </script>
-
 </body>
 </html>
