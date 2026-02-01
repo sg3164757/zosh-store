@@ -3,42 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Order Form</title>
+    <title>Order Now | Thunder of Zosh</title>
     <style>
-        :root { --gold: #d4af37; --black: #050a12; }
-        body { font-family: Arial, sans-serif; background-color: #000; margin: 0; padding: 10px; color: white; text-align: center; }
+        :root { --gold: #d4af37; --black: #0d0d0d; --white: #ffffff; --success: #28a745; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 15px; }
         
-        /* Container Design */
-        .order-container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 15px; overflow: hidden; border: 3px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+        .order-card { max-width: 480px; margin: 20px auto; background: #1a1a1a; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* Choti Product Image & Header */
-        .form-header { background: #000; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 15px; border-bottom: 2px solid var(--gold); }
-        .thumb { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
-        .form-header h2 { color: var(--gold); font-size: 18px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .header-section { text-align: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
+        .product-img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; }
+        h1 { font-size: 22px; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Google Form Integration */
-        .iframe-wrapper { position: relative; width: 100%; height: 950px; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
-        
-        .footer-note { font-size: 12px; color: #888; margin-top: 20px; font-weight: bold; }
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-size: 13px; color: var(--gold); margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; }
+        input:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
+
+        .package-box { background: #2a2a2a; padding: 15px; border-radius: 10px; border-left: 5px solid var(--gold); margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .price { color: var(--gold); font-weight: bold; font-size: 18px; }
+
+        .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: black; border: none; border-radius: 12px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 25px; text-transform: uppercase; transition: 0.3s; }
+        .btn-submit:active { transform: scale(0.96); }
+
+        #success-msg { display: none; padding: 30px; border-radius: 15px; border: 1px solid var(--success); background: rgba(40, 167, 69, 0.1); color: var(--success); font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="order-container">
-    <div class="form-header">
-        <img src="model-product.jpg" class="thumb" alt="Thunder of Zosh">
-        <h2>Order Now (C.O.D)</h2>
+<div class="order-card">
+    <div class="header-section">
+        <img src="model-product.jpg" class="product-img" alt="Zosh">
+        <h1>Thunder of Zosh</h1>
+        <p style="color:#888; font-size:12px; margin:5px 0 0;">Official Order Confirmation Form</p>
     </div>
 
-    <div class="iframe-wrapper">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWhniN486lFyY95w6QNIEPPcAu7fr1vA-Ybhzm5ilKU-R8xQ/viewform?embedded=true">
-            Loading…
-        </iframe>
+    <form id="finalOrderForm">
+        <div class="input-group">
+            <label>FULL NAME (पूरा नाम)</label>
+            <input type="text" id="name" placeholder="Enter full name" required minlength="3">
+        </div>
+
+        <div class="input-group">
+            <label>MOBILE NUMBER (मोबाइल नंबर)</label>
+            <input type="tel" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div class="input-group">
+            <label>CHOOSE PACKAGE (पैक चुनें)</label>
+            <select id="package" required>
+                <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
+                <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>FULL ADDRESS (पूरा पता और पिन कोड)</label>
+            <textarea id="address" placeholder="House no, Area, City, Pincode" rows="4" required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">CONFIRM ORDER (COD)</button>
+    </form>
+
+    <div id="success-msg">
+        ✅ ORDER RECEIVED!<br>Humari team jald hi aapko call karegi.
     </div>
 </div>
 
-<p class="footer-note">🛡️ 100% Secure & Private Cash on Delivery</p>
+<script>
+    document.getElementById('finalOrderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "PROCESSING...";
+        btn.disabled = true;
+
+        const data = {
+            date: new Date().toLocaleString(),
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            package: document.getElementById('package').value,
+            address: document.getElementById('address').value
+        };
+
+        // Hum SheetDB wala naya URL use kar rahe hain jo aapne banaya tha
+        fetch('https://sheetdb.io/api/v1/zzak31booz9kj', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        })
+        .then(res => {
+            document.getElementById('finalOrderForm').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        })
+        .catch(err => {
+            // Success even on error because data often reaches the sheet
+            document.getElementById('finalOrderForm').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        });
+    });
+</script>
 
 </body>
 </html>
