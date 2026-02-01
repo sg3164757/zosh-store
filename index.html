@@ -3,78 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Store</title>
+    <title>Thunder of Zosh | Official</title>
     <style>
-        :root { --gold: #d4af37; --black: #0a0a0a; --white: #ffffff; }
-        body { font-family: 'Poppins', Arial, sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 20px; }
+        :root { --gold: #d4af37; --black: #0d0d0d; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; margin: 0; padding: 15px; }
         
-        /* Premium Card Design */
-        .order-box { max-width: 450px; margin: auto; background: #151515; padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2); text-align: center; }
+        /* Chota aur Website wala look nahi, sirf Form look */
+        .order-card { max-width: 400px; margin: 10px auto; background: #1a1a1a; padding: 20px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.2); text-align: center; }
         
-        .product-header img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; }
-        h2 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .prod-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; }
+        h2 { color: var(--gold); font-size: 18px; margin: 0 0 15px; text-transform: uppercase; }
 
-        /* Custom Form Look (Not Google Form) */
-        .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-size: 12px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; }
-        input:focus { border-color: var(--gold); outline: none; }
+        .field { text-align: left; margin-bottom: 12px; }
+        label { display: block; font-size: 11px; color: var(--gold); margin-bottom: 4px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #fff; color: #000; font-size: 15px; box-sizing: border-box; }
+        
+        /* Submit Button */
+        .btn-confirm { width: 100%; padding: 18px; background: linear-gradient(45deg, #d4af37, #b8860b); color: #000; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
+        .btn-confirm:disabled { background: #555; cursor: not-allowed; }
 
-        .btn-order { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: #000; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; transition: 0.3s; }
-        .btn-order:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-
-        #thank-you { display: none; padding: 40px 20px; color: #28a745; font-size: 20px; font-weight: bold; }
+        #msg { display: none; padding: 20px; color: #d4af37; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
 
-<div class="order-box">
-    <div class="product-header">
-        <img src="model-product.jpg" alt="Thunder of Zosh">
-        <h2>Order Now</h2>
-    </div>
+<div class="order-card">
+    <img src="model-product.jpg" class="prod-img" alt="Zosh">
+    <h2>Thunder of Zosh</h2>
 
-    <form id="premiumForm">
-        <div class="input-group">
-            <label>Full Name</label>
-            <input type="text" id="u_name" placeholder="Apna pura naam likhein" required minlength="3">
+    <form id="zoshOrder">
+        <div class="field">
+            <label>FULL NAME (पूरा नाम)</label>
+            <input type="text" id="n" placeholder="Enter Name" required minlength="3">
         </div>
 
-        <div class="input-group">
-            <label>Phone Number</label>
-            <input type="tel" id="u_phone" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" required>
+        <div class="field">
+            <label>PHONE NUMBER (10 DIGITS)</label>
+            <input type="tel" id="p" placeholder="Mobile Number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
-        <div class="input-group">
-            <label>Select Pack</label>
-            <select id="u_pack">
-                <option value="Combo Pack - ₹3,999">Combo Pack (Recommended) - ₹3,999</option>
+        <div class="field">
+            <label>CHOOSE OPTION</label>
+            <select id="pkg">
                 <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
+                <option value="Combo Pack - ₹3,999" selected>Combo Pack (Best Value) - ₹3,999</option>
             </select>
         </div>
 
-        <div class="input-group">
-            <label>Delivery Address</label>
-            <textarea id="u_address" rows="3" placeholder="Pura pata aur Pin Code" required minlength="10"></textarea>
+        <div class="field">
+            <label>ADDRESS (पूरा पता)</label>
+            <textarea id="a" rows="3" placeholder="House no, Area, City, Pincode" required minlength="10"></textarea>
         </div>
 
-        <button type="submit" class="btn-order" id="submitBtn">Confirm Order (COD)</button>
+        <button type="submit" class="btn-confirm" id="b">Place Order (COD)</button>
     </form>
 
-    <div id="thank-you">
-        ✅ ORDER PLACED!<br>Humari team aapko jald call karegi.
-    </div>
+    <div id="msg">✅ ORDER SUCCESS! Hum call karenge.</div>
 </div>
 
 <script>
-    document.getElementById('premiumForm').addEventListener('submit', function(e) {
+    document.getElementById('zoshOrder').addEventListener('submit', function(e) {
         e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "Processing...";
+        const btn = document.getElementById('b');
+        btn.innerText = "SENDING...";
         btn.disabled = true;
 
-        const formData = {
+        const data = {
             "Timestamp": new Date().toLocaleString(),
-            "Name": document.getElementById('u_name').value,
-            "Phone number": document.getElementById('u_phone').value,
-            "package":
+            "Name": document.getElementById('n').value,
+            "Phone number": document.getElementById('p').value,
+            "package": document.getElementById('pkg').value,
+            "Address": document.getElementById('a').value
+        };
+
+        // Nayi API Link
+        fetch('https://sheetdb.io/api/v1/2qqhwik4r33j0', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        })
+        .then(() => {
+            document.getElementById('zoshOrder').style.display = 'none';
+            document.getElementById('msg').style.display = 'block';
+        })
+        .catch(() => {
+            alert("Error! Please check internet.");
+            btn.disabled = false;
+            btn.innerText = "Place Order (COD)";
+        });
+    });
+</script>
+
+</body>
+</html>
