@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thunder of Zosh | Official Store</title>
     <style>
-        :root { --gold: #d4af37; --black: #050a12; --dark: #111111; --success: #25D366; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--black); color: white; line-height: 1.6; }
-        header { background: #000; padding: 25px; text-align: center; border-bottom: 2px solid var(--gold); }
+        :root { --gold: #d4af37; --black: #050a12; --dark: #111; --success: #25D366; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--black); color: white; line-height: 1.6; text-align: center; }
+        header { background: #000; padding: 25px; border-bottom: 2px solid var(--gold); }
         .container { max-width: 900px; margin: auto; padding: 20px; }
-        .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); display: block; margin: 0 auto 30px; box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); }
-        .section-title { color: var(--gold); text-align: center; text-transform: uppercase; letter-spacing: 3px; margin: 40px 0 20px; font-size: 26px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .box { background: #1a2a3a; padding: 25px; border-radius: 15px; width: 380px; border-top: 5px solid var(--gold); }
-        .price-flex { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; margin: 30px 0; }
-        .price-box { background: white; color: #111; padding: 30px; border-radius: 20px; width: 270px; text-align: center; border: 4px solid #ddd; cursor: pointer; position: relative; }
-        .price-box.selected { border-color: var(--gold); background: #fffcf0; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3); }
-        .order-section { background: var(--dark); padding: 40px 25px; border-radius: 25px; margin-top: 50px; border: 1px solid #222; text-align: center; }
-        input, textarea { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; border: none; font-size: 16px; box-sizing: border-box; color: #000; }
+        .hero-img { width: 100%; max-width: 600px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); margin-bottom: 30px; }
+        .section-title { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin: 40px 0 20px; font-size: 26px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .box { background: #1a2a3a; padding: 25px; border-radius: 15px; width: 380px; border-top: 5px solid var(--gold); display: inline-block; margin: 10px; vertical-align: top; text-align: left; }
+        .price-box { background: white; color: #111; padding: 25px; border-radius: 20px; width: 260px; display: inline-block; margin: 10px; cursor: pointer; border: 4px solid #ddd; position: relative; }
+        .price-box.selected { border-color: var(--gold); background: #fffcf0; transform: scale(1.05); }
+        .order-section { background: var(--dark); padding: 40px; border-radius: 20px; margin-top: 40px; border: 1px solid #222; }
+        input, textarea { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; border: none; font-size: 16px; box-sizing: border-box; }
         .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #b8860b); color: black; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        #success-msg { display: none; padding: 25px; color: var(--success); font-weight: bold; font-size: 20px; }
+        #success-msg { display: none; color: var(--success); font-weight: bold; font-size: 20px; padding: 20px; }
     </style>
 </head>
 <body>
@@ -29,29 +27,22 @@
 <div class="container">
     <img src="model-product.jpg" alt="Thunder of Zosh" class="hero-img">
 
-    <h2 class="section-title">How to Use (उपयोग विधि)</h2>
-    <div class="grid">
-        <div class="box"><h3>⚡ Performance Gel</h3><p>Raat ko halke haath se ling par massage karein jab tak absorb na ho jaye.</p></div>
-        <div class="box"><h3>💊 Power Capsules</h3><p>Raat ko sone se pehle 1 capsule gungune doodh ke saath lein.</p></div>
-    </div>
-
-    <h2 class="section-title">Natural Ingredients</h2>
-    <div class="grid"><div class="box"><h3>🌿 Ayurvedic Blend</h3><p>Shilajit, Ashwagandha, aur Safed Musli ka shuddh mishran.</p></div></div>
+    <h2 class="section-title">Ingredients & Usage</h2>
+    <div class="box"><h3>🌿 Natural Power</h3><p>Shilajit, Ashwagandha aur Safed Musli ka shuddh ayurvedic mishran.</p></div>
+    <div class="box"><h3>⚡ Performance</h3><p>Halke haath se massage karein aur 1 capsule doodh ke saath lein.</p></div>
 
     <h2 class="section-title">अपना पैक चुनें</h2>
-    <div class="price-flex">
-        <div class="price-box" id="pkg1" onclick="updateSelection('Single Bottle', '2999', 'pkg1')"><h3>Single Bottle</h3><p style="font-size:30px; font-weight:bold; color:#d32f2f;">₹2,999</p></div>
-        <div class="price-box selected" id="pkg2" onclick="updateSelection('Combo Pack', '3999', 'pkg2')"><h3>Combo Pack</h3><p style="font-size:30px; font-weight:bold; color:#d32f2f;">₹3,999</p></div>
-    </div>
+    <div class="price-box" id="pkg1" onclick="selectPkg('Single Bottle', '2999', 'pkg1')"><h3>Single Bottle</h3><p>₹2,999</p></div>
+    <div class="price-box selected" id="pkg2" onclick="selectPkg('Combo Pack', '3999', 'pkg2')"><h3>Combo Pack</h3><p>₹3,999</p></div>
 
     <div class="order-section">
-        <h3>Confirm Your Order</h3>
+        <h3>Secure Checkout</h3>
         <p>Selected: <strong id="display-pkg" style="color: var(--gold);">Combo Pack - ₹3,999</strong></p>
-        <form id="order-form">
-            <input type="text" id="Name_Val" placeholder="Full Name (पूरा नाम)" required>
-            <input type="tel" id="Phone_Val" placeholder="Mobile Number (मोबाइल नंबर)" required>
-            <textarea id="Address_Val" placeholder="Full Address with Pin Code" rows="4" required></textarea>
-            <button type="button" class="btn-submit" id="submitBtn" onclick="submitLead()">PLACE ORDER NOW (COD)</button>
+        <form id="lead-form">
+            <input type="text" id="user-name" placeholder="Full Name (पूरा नाम)" required>
+            <input type="tel" id="user-phone" placeholder="Mobile Number (मोबाइल नंबर)" required>
+            <textarea id="user-address" placeholder="Full Address with Pin Code" rows="3" required></textarea>
+            <button type="button" class="btn-submit" id="submitBtn" onclick="finalSubmit()">PLACE ORDER NOW (COD)</button>
         </form>
         <div id="success-msg">✅ Order Successful! Hum aapko call karenge.</div>
     </div>
@@ -60,7 +51,7 @@
 <script>
     var selectedPackage = "Combo Pack - ₹3,999";
 
-    function updateSelection(name, price, id) {
+    function selectPkg(name, price, id) {
         selectedPackage = name + " - ₹" + price;
         document.getElementById('display-pkg').innerText = selectedPackage;
         document.getElementById('pkg1').classList.remove('selected');
@@ -68,38 +59,39 @@
         document.getElementById(id).classList.add('selected');
     }
 
-    function submitLead() {
+    function finalSubmit() {
         const url = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
-        const n = document.getElementById('Name_Val').value;
-        const p = document.getElementById('Phone_Val').value;
-        const a = document.getElementById('Address_Val').value;
+        const nameVal = document.getElementById('user-name').value;
+        const phoneVal = document.getElementById('user-phone').value;
+        const addressVal = document.getElementById('user-address').value;
 
-        if(!n || !p || !a) { alert("Please fill all details!"); return; }
+        if(!nameVal || !phoneVal || !addressVal) { alert("Sari jankari bharein!"); return; }
 
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "Sending...";
-        btn.disabled = true;
+        document.getElementById('submitBtn').innerText = "Processing...";
+        document.getElementById('submitBtn').disabled = true;
 
-        // FIXED HEADERS MAPPING (Case-Sensitive as per image_6b2c36.png)
-        const data = {
-            "Date": new Date().toLocaleString(),
-            "Name": n, 
-            "Phone": p,
-            "Pakage": selectedPackage, 
-            "address": a
+        // Force mapping for ALL small letters to fix SheetDB cache
+        const payload = {
+            "data": [{
+                "date": new Date().toLocaleString(),
+                "name": nameVal,
+                "phone": phoneVal,
+                "package": selectedPackage,
+                "address": addressVal
+            }]
         };
 
         fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "data": [data] })
+            body: JSON.stringify(payload)
         })
         .then(() => {
-            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('lead-form').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         })
         .catch(() => {
-            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('lead-form').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         });
     }
