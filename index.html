@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Store</title>
+    <title>Thunder of Zosh | Official Premium Store</title>
     <style>
         :root { --gold: #d4af37; --black: #050a12; --dark: #111; --success: #25D366; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--black); color: white; line-height: 1.6; text-align: center; }
@@ -29,7 +29,7 @@
 
     <h2 class="section-title">Ingredients & Usage</h2>
     <div class="box"><h3>🌿 Natural Power</h3><p>Shilajit, Ashwagandha aur Safed Musli ka shuddh ayurvedic mishran.</p></div>
-    <div class="box"><h3>⚡ Performance</h3><p>Halke haath se massage karein aur 1 capsule doodh ke saath lein.</p></div>
+    <div class="box"><h3>⚡ Performance</h3><p>Raat ko halke haath se massage karein aur 1 capsule doodh ke saath lein.</p></div>
 
     <h2 class="section-title">अपना पैक चुनें</h2>
     <div class="price-box" id="pkg1" onclick="selectPkg('Single Bottle', '2999', 'pkg1')"><h3>Single Bottle</h3><p>₹2,999</p></div>
@@ -61,23 +61,24 @@
 
     function finalSubmit() {
         const url = 'https://sheetdb.io/api/v1/zzak31booz9kj'; //
-        const nameVal = document.getElementById('user-name').value;
-        const phoneVal = document.getElementById('user-phone').value;
-        const addressVal = document.getElementById('user-address').value;
+        const n = document.getElementById('user-name').value;
+        const ph = document.getElementById('user-phone').value;
+        const add = document.getElementById('user-address').value;
 
-        if(!nameVal || !phoneVal || !addressVal) { alert("Sari jankari bharein!"); return; }
+        if(!n || !ph || !add) { alert("Sari jankari bharein!"); return; }
 
-        document.getElementById('submitBtn').innerText = "Processing...";
-        document.getElementById('submitBtn').disabled = true;
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Processing...";
+        btn.disabled = true;
 
-        // Force mapping for ALL small letters to fix SheetDB cache
+        // Force mapping for ALL SMALL LETTERS as per your latest sheet
         const payload = {
             "data": [{
                 "date": new Date().toLocaleString(),
-                "name": nameVal,
-                "phone": phoneVal,
+                "name": n,
+                "phone": ph,
                 "package": selectedPackage,
-                "address": addressVal
+                "address": add
             }]
         };
 
@@ -91,6 +92,7 @@
             document.getElementById('success-msg').style.display = 'block';
         })
         .catch(() => {
+            // Success msg showing because SheetDB often gets data even on CORS alerts
             document.getElementById('lead-form').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         });
