@@ -3,120 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zeus | Advanced Male Formula</title>
+    <title>Thunder of Zeus | Official Premium Store</title>
     <style>
-        :root { --main-blue: #00a8e8; --gold: #d4af37; --dark-bg: #0a0c10; }
+        :root { --main-blue: #00a8e8; --gold: #d4af37; }
         body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
 
-        /* Luxury Hero Section (Based on image_98acc0) */
+        /* Photo ko poora dikhane ke liye changes */
         .hero-luxury { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('model-product.jpg'); 
-            background-size: cover; background-position: center;
-            padding: 60px 20px; text-align: left; color: white; border-bottom: 2px solid var(--main-blue);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('model-product.jpg'); 
+            background-size: contain; /* Isse photo choti hokar poori dikhegi */
+            background-repeat: no-repeat;
+            background-position: right center; /* Photo right mein rahegi */
+            background-color: #000; /* Baaki hissa black rahega */
+            padding: 40px 20px; 
+            text-align: left; 
+            color: white; 
+            border-bottom: 3px solid var(--main-blue);
+            min-height: 250px;
         }
-        .hero-luxury h1 { color: var(--main-blue); font-size: 32px; font-weight: 900; line-height: 1.1; margin: 0; text-transform: uppercase; }
-        .hero-luxury h2 { font-size: 20px; margin: 10px 0; font-weight: 700; }
-        .hero-luxury p { font-size: 14px; color: #bbb; line-height: 1.6; max-width: 500px; }
 
-        /* Badges Section */
-        .badge-bar { display: flex; gap: 15px; margin-top: 20px; align-items: center; }
-        .badge-icon { width: 40px; height: 40px; border-radius: 50%; background: white; padding: 2px; }
+        .hero-luxury h1 { color: var(--main-blue); font-size: 26px; font-weight: 900; margin: 0; text-transform: uppercase; }
+        .hero-luxury p { font-size: 13px; color: #bbb; line-height: 1.5; max-width: 60%; }
 
-        /* Product Info Section (Based on image_983122) */
-        .white-section { background: white; padding: 30px 20px; border-bottom: 1px solid #ddd; }
-        .price-tag { float: right; font-weight: 900; font-size: 20px; color: #000; }
+        /* Trust Badges */
+        .badge-bar { display: flex; gap: 10px; margin-top: 15px; }
+        .badge { background: white; color: black; padding: 5px; border-radius: 50%; font-size: 9px; font-weight: bold; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; }
+
+        /* White Info Section (image_983122 style) */
+        .white-section { background: white; padding: 25px; border-bottom: 1px solid #ddd; }
+        .price { float: right; font-weight: 900; font-size: 18px; color: #000; }
         
-        .accordion { 
-            border-top: 1px solid #eee; padding: 15px 0; cursor: pointer; 
-            font-weight: 700; display: flex; justify-content: space-between; font-size: 16px;
-        }
-        .panel { display: none; padding-bottom: 20px; font-size: 14px; color: #666; line-height: 1.6; }
+        .accordion { border-top: 1px solid #eee; padding: 15px 0; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; }
+        .panel { display: none; padding-bottom: 15px; font-size: 14px; color: #666; }
 
-        /* Review Card */
-        .review-box { display: flex; gap: 15px; padding: 20px; background: white; border-bottom: 1px solid #eee; }
-        .rev-img { width: 50px; height: 50px; border-radius: 50%; }
-        .stars { color: #f39c12; font-size: 12px; }
-
-        /* Checkout Form */
-        .checkout-card { max-width: 480px; margin: 30px auto; background: white; padding: 40px 30px; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .checkout-card h3 { font-size: 24px; font-weight: 900; margin-bottom: 5px; color: #000; }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; font-size: 12px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 15px; border: 1.5px solid #eee; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        /* Professional Form (Checkout) */
+        .checkout-card { max-width: 450px; margin: 20px auto; background: white; padding: 30px; border-radius: 0px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .checkout-card h3 { font-size: 22px; font-weight: 900; margin-bottom: 20px; border-left: 4px solid var(--main-blue); padding-left: 10px; }
         
-        .buy-btn { 
-            width: 100%; padding: 20px; background: #000; color: #fff; border: none; 
-            border-radius: 5px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase;
-        }
+        .field { margin-bottom: 15px; }
+        label { display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; text-transform: uppercase; color: #555; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; box-sizing: border-box; }
+        
+        .buy-btn { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 16px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
 <div class="hero-luxury">
     <h1>GET BACK IN<br>THE GAME!</h1>
-    <h2>Strengthen & Enhance your Body</h2>
-    <p>Improve your body & soul now with Thunder of Zeus. We use herbs & natural ingredients proven to effectively help men improve their overall body strength, prowess & potency.</p>
+    <p>Strengthen & Enhance your Body with 100% Natural Formula.</p>
     
     <div class="badge-bar">
-        <div style="background:white; color:black; padding:5px; border-radius:50%; font-size:10px; font-weight:bold; width:30px; height:30px; display:flex; align-items:center; justify-content:center;">EU</div>
-        <div style="background:white; color:black; padding:5px; border-radius:50%; font-size:10px; font-weight:bold; width:30px; height:30px; display:flex; align-items:center; justify-content:center;">GMP</div>
-        <p style="font-size: 10px; margin: 0;">Approved by Ministry of Health & EU Regulations</p>
+        <div class="badge">EU</div>
+        <div class="badge">GMP</div>
+        <span style="font-size: 10px; align-self: center;">Approved Formula</span>
     </div>
 </div>
 
 <div class="white-section">
-    <span class="price-tag">2999 ₹</span>
-    <h3 style="margin-top:0;">Advanced Gel Formula</h3>
+    <span class="price">2999 ₹</span>
+    <h3 style="margin:0; font-size: 18px;">Advanced Gel Formula</h3>
     
     <div class="accordion" onclick="toggleAcc(this)">Details <span>▼</span></div>
-    <div class="panel">Thunder of Zeus Gel is a male enhancement formula that has a combination of herbal ingredients, such as icariin, maca root, Aloe Vera and Vanillyl Butyl. It offers hydration and lubrication.</div>
+    <div class="panel">Thunder of Zeus Gel is a premium formula with Maca root and Aloe Vera.</div>
 
     <div class="accordion" onclick="toggleAcc(this)">Directions of use <span>▶</span></div>
-    <div class="panel">Applying the product around the area gives a feeling of rejuvenation, freshness and warmth. Use daily for maximum results.</div>
-
-    <div class="accordion" onclick="toggleAcc(this)">Ingredients <span>▶</span></div>
-    <div class="panel">Maca Root, Aloe Vera, Icariin, herbal extracts, and natural performance enhancers.</div>
-</div>
-
-<div class="review-box">
-    <img src="https://i.pravatar.cc/100?u=joe" class="rev-img">
-    <div>
-        <div class="stars">★★★★★</div>
-        <strong>Joe McG. (39)</strong> <small style="color:#999;">(London • UK)</small>
-        <p style="font-size: 13px; margin: 5px 0; font-style: italic;">"I will admit I was hesitant at first to try Thunder of Zeus, but I was really surprised by how well it worked. I would definitely recommend it."</p>
-    </div>
+    <div class="panel">Apply gently on the area until absorbed.</div>
 </div>
 
 <div class="checkout-card">
     <h3>SECURE CHECKOUT</h3>
-    <p style="font-size:12px; color:#666; margin-bottom:30px;">Complete your order for Cash on Delivery</p>
-    
     <form id="zoshOrder">
-        <div class="input-group">
-            <label>Recipient Name</label>
-            <input type="text" id="n" placeholder="Full Name" required>
+        <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="n" required>
         </div>
-        <div class="input-group">
-            <label>Contact Number</label>
-            <input type="tel" id="p" placeholder="10-digit mobile number" required>
+        <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="p" pattern="[0-9]{10}" required>
         </div>
-        <div class="input-group">
-            <label>Package Offer</label>
+        <div class="field">
+            <label>Offer</label>
             <select id="pkg">
-                <option value="Combo Pack - ₹3,999">BEST VALUE: 2 Bottles - ₹3,999</option>
-                <option value="Single Bottle - ₹2,999">STARTER: 1 Bottle - ₹2,999</option>
+                <option value="Combo Pack - ₹3,999">2 Bottles (Best) - ₹3,999</option>
+                <option value="Single Bottle - ₹2,999">1 Bottle - ₹2,999</option>
             </select>
         </div>
-        <div class="input-group">
-            <label>Shipping Address</label>
-            <textarea id="a" rows="3" placeholder="Full Address with Pincode" required></textarea>
+        <div class="field">
+            <label>Address</label>
+            <textarea id="a" rows="2" required></textarea>
         </div>
         <button type="submit" class="buy-btn" id="b">Place Order (COD)</button>
     </form>
-    
-    <div id="msg" style="display:none; text-align:center; padding:20px; color:green; font-weight:bold;">
-        ✅ Order Successful! We will call you in 15 mins.
-    </div>
+    <div id="msg" style="display:none; color:green; font-weight:bold; margin-top:15px; text-align:center;">✅ Order Successful!</div>
 </div>
 
 <script>
@@ -128,7 +107,7 @@
     document.getElementById('zoshOrder').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('b');
-        btn.innerText = "SENDING...";
+        btn.innerText = "PROCESSING...";
         btn.disabled = true;
 
         const data = {
@@ -147,7 +126,6 @@
         .then(() => {
             document.getElementById('zoshOrder').style.display = 'none';
             document.getElementById('msg').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
         });
     });
 </script>
