@@ -3,113 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zeus | Official Premium Store</title>
+    <title>Thunder of Zosh | Official Store</title>
     <style>
-        :root { --main-blue: #00a8e8; --gold: #d4af37; }
-        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
-
-        /* Photo ko poora dikhane ke liye changes */
-        .hero-luxury { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('model-product.jpg'); 
-            background-size: contain; /* Isse photo choti hokar poori dikhegi */
-            background-repeat: no-repeat;
-            background-position: right center; /* Photo right mein rahegi */
-            background-color: #000; /* Baaki hissa black rahega */
-            padding: 40px 20px; 
-            text-align: left; 
-            color: white; 
-            border-bottom: 3px solid var(--main-blue);
-            min-height: 250px;
-        }
-
-        .hero-luxury h1 { color: var(--main-blue); font-size: 26px; font-weight: 900; margin: 0; text-transform: uppercase; }
-        .hero-luxury p { font-size: 13px; color: #bbb; line-height: 1.5; max-width: 60%; }
-
-        /* Trust Badges */
-        .badge-bar { display: flex; gap: 10px; margin-top: 15px; }
-        .badge { background: white; color: black; padding: 5px; border-radius: 50%; font-size: 9px; font-weight: bold; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; }
-
-        /* White Info Section (image_983122 style) */
-        .white-section { background: white; padding: 25px; border-bottom: 1px solid #ddd; }
-        .price { float: right; font-weight: 900; font-size: 18px; color: #000; }
+        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --red: #ff4d4d; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 0; }
         
-        .accordion { border-top: 1px solid #eee; padding: 15px 0; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; }
-        .panel { display: none; padding-bottom: 15px; font-size: 14px; color: #666; }
+        /* Header Section */
+        .hero { text-align: center; padding: 20px; background: linear-gradient(to bottom, #1a1a1a, #000); border-bottom: 2px solid var(--gold); }
+        .hero h1 { color: var(--gold); font-size: 28px; margin: 10px 0; text-transform: uppercase; }
+        .hero p { font-size: 16px; color: #ccc; margin: 5px 0; }
 
-        /* Professional Form (Checkout) */
-        .checkout-card { max-width: 450px; margin: 20px auto; background: white; padding: 30px; border-radius: 0px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .checkout-card h3 { font-size: 22px; font-weight: 900; margin-bottom: 20px; border-left: 4px solid var(--main-blue); padding-left: 10px; }
+        /* Benefits Section */
+        .benefits { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 15px; }
+        .benefit-tag { background: #222; border: 1px solid #444; padding: 8px 15px; border-radius: 50px; font-size: 13px; color: var(--gold); }
+
+        /* Product Image & Stock */
+        .prod-container { text-align: center; margin-top: 20px; }
+        .prod-img { width: 220px; height: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212,175,55,0.5); transition: 0.3s; }
+        .stock-tag { background: var(--red); color: white; font-size: 12px; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-top: 15px; animation: blink 1.5s infinite; font-weight: bold; }
         
-        .field { margin-bottom: 15px; }
-        label { display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; text-transform: uppercase; color: #555; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; box-sizing: border-box; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Offer Highlights */
+        .offer-box { background: #111; border: 1px dashed var(--gold); margin: 20px; padding: 15px; border-radius: 10px; text-align: center; }
+        .price-big { font-size: 24px; color: #fff; font-weight: bold; }
+        .save-tag { color: #2ecc71; font-weight: bold; font-size: 18px; }
+
+        /* Form Container */
+        .order-card { max-width: 420px; margin: 20px auto; background: linear-gradient(145deg, #1a1a1a, #0d0d0d); padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+        h2 { color: var(--gold); font-size: 22px; margin-bottom: 20px; text-align: center; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        .field { text-align: left; margin-bottom: 18px; }
+        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; transition: 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
+
+        .btn-confirm { width: 100%; padding: 20px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 20px rgba(212,175,55,0.3); transition: 0.3s; }
+        .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.5); }
         
-        .buy-btn { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 16px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .trust-icons { display: flex; justify-content: space-around; margin-top: 25px; border-top: 1px solid #333; padding-top: 20px; font-size: 11px; color: #888; }
+        .icon-item { text-align: center; }
+        
+        #msg { display: none; padding: 40px; color: var(--gold); font-weight: bold; font-size: 24px; text-align: center; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-<div class="hero-luxury">
-    <h1>GET BACK IN<br>THE GAME!</h1>
-    <p>Strengthen & Enhance your Body with 100% Natural Formula.</p>
-    
-    <div class="badge-bar">
-        <div class="badge">EU</div>
-        <div class="badge">GMP</div>
-        <span style="font-size: 10px; align-self: center;">Approved Formula</span>
-    </div>
+<div class="hero">
+    <h1>THUNDER OF ZOSH</h1>
+    <p>⚡ Power • Timing • Performance ⚡</p>
 </div>
 
-<div class="white-section">
-    <span class="price">2999 ₹</span>
-    <h3 style="margin:0; font-size: 18px;">Advanced Gel Formula</h3>
-    
-    <div class="accordion" onclick="toggleAcc(this)">Details <span>▼</span></div>
-    <div class="panel">Thunder of Zeus Gel is a premium formula with Maca root and Aloe Vera.</div>
-
-    <div class="accordion" onclick="toggleAcc(this)">Directions of use <span>▶</span></div>
-    <div class="panel">Apply gently on the area until absorbed.</div>
+<div class="benefits">
+    <div class="benefit-tag">✓ 100% Ayurvedic</div>
+    <div class="benefit-tag">✓ Timing + Erection</div>
+    <div class="benefit-tag">✓ No Side Effects</div>
 </div>
 
-<div class="checkout-card">
-    <h3>SECURE CHECKOUT</h3>
+<div class="prod-container">
+    <img src="model-product.jpg" class="prod-img" alt="Thunder of Zosh">
+    <br>
+    <div class="stock-tag">⚠️ ONLY 7 PACKS LEFT - SPECIAL OFFER</div>
+</div>
+
+<div class="offer-box">
+    <div class="price-big">Combo Pack: <span style="color: var(--gold);">₹3,999</span></div>
+    <div class="save-tag">SAVE ₹2,000 TODAY!</div>
+    <p style="font-size: 13px; margin-top: 5px;">(Single Bottle Price: ₹2,999)</p>
+</div>
+
+<div class="order-card">
+    <h2>Delivery Details</h2>
     <form id="zoshOrder">
         <div class="field">
             <label>Full Name</label>
-            <input type="text" id="n" required>
+            <input type="text" id="n" placeholder="Enter Your Name" required minlength="3">
         </div>
+
         <div class="field">
-            <label>Phone Number</label>
-            <input type="tel" id="p" pattern="[0-9]{10}" required>
+            <label>Mobile Number</label>
+            <input type="tel" id="p" placeholder="10 Digit Phone Number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
+
         <div class="field">
-            <label>Offer</label>
+            <label>Choose Best Offer</label>
             <select id="pkg">
-                <option value="Combo Pack - ₹3,999">2 Bottles (Best) - ₹3,999</option>
-                <option value="Single Bottle - ₹2,999">1 Bottle - ₹2,999</option>
+                <option value="Combo Pack - ₹3,999" selected>Combo Pack (2 Bottles) - ₹3,999 (Most Popular)</option>
+                <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
             </select>
         </div>
+
         <div class="field">
-            <label>Address</label>
-            <textarea id="a" rows="2" required></textarea>
+            <label>Full Shipping Address</label>
+            <textarea id="a" rows="3" placeholder="House No, Street, City, Pincode" required minlength="10"></textarea>
         </div>
-        <button type="submit" class="buy-btn" id="b">Place Order (COD)</button>
+
+        <button type="submit" class="btn-confirm" id="b">Confirm My Order (COD)</button>
+
+        <div class="trust-icons">
+            <div class="icon-item">🚚<br>Fast Delivery</div>
+            <div class="icon-item">📦<br>Safe Packing</div>
+            <div class="icon-item">💰<br>Cash on Delivery</div>
+        </div>
     </form>
-    <div id="msg" style="display:none; color:green; font-weight:bold; margin-top:15px; text-align:center;">✅ Order Successful!</div>
+
+    <div id="msg">
+        🏆 ORDER SUCCESSFUL!<br>
+        <span style="font-size: 14px; color: #888; font-weight: normal;">Hamare executive aapko 15 mins mein call karenge.</span>
+    </div>
 </div>
 
 <script>
-    function toggleAcc(el) {
-        var panel = el.nextElementSibling;
-        panel.style.display = (panel.style.display === "block") ? "none" : "block";
-    }
-
     document.getElementById('zoshOrder').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('b');
-        btn.innerText = "PROCESSING...";
+        btn.innerText = "VERIFYING...";
         btn.disabled = true;
 
+        // Capturing exact timestamp for your Excel Sheet
         const data = {
             "Timestamp": new Date().toLocaleString('en-IN'), 
             "Name": document.getElementById('n').value,
@@ -118,6 +129,7 @@
             "Address": document.getElementById('a').value
         };
 
+        // Your SheetDB API - Sending to the same excel
         fetch('https://sheetdb.io/api/v1/2qqhwik4r33j0', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -126,6 +138,12 @@
         .then(() => {
             document.getElementById('zoshOrder').style.display = 'none';
             document.getElementById('msg').style.display = 'block';
+            window.scrollTo(0, 0);
+        })
+        .catch(() => {
+            alert("Connection Error! Please check your internet.");
+            btn.disabled = false;
+            btn.innerText = "Confirm My Order (COD)";
         });
     });
 </script>
