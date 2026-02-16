@@ -3,124 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder of Zosh | Official Store</title>
+    <title>Thunder of Zosh | Professional Male Enhancement</title>
     <style>
-        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --red: #ff4d4d; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 0; }
+        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --blue-link: #00a8e8; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f4f4f4; color: #333; margin: 0; padding: 0; }
         
-        /* Header Section */
-        .hero { text-align: center; padding: 20px; background: linear-gradient(to bottom, #1a1a1a, #000); border-bottom: 2px solid var(--gold); }
-        .hero h1 { color: var(--gold); font-size: 28px; margin: 10px 0; text-transform: uppercase; }
-        .hero p { font-size: 16px; color: #ccc; margin: 5px 0; }
-
-        /* Benefits Section */
-        .benefits { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 15px; }
-        .benefit-tag { background: #222; border: 1px solid #444; padding: 8px 15px; border-radius: 50px; font-size: 13px; color: var(--gold); }
-
-        /* Product Image & Stock */
-        .prod-container { text-align: center; margin-top: 20px; }
-        .prod-img { width: 220px; height: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212,175,55,0.5); transition: 0.3s; }
-        .stock-tag { background: var(--red); color: white; font-size: 12px; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-top: 15px; animation: blink 1.5s infinite; font-weight: bold; }
+        /* Dark Header Section */
+        .hero { text-align: center; padding: 30px 20px; background: #000; color: white; border-bottom: 3px solid var(--gold); }
+        .hero h1 { color: var(--gold); font-size: 26px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
         
-        @keyframes blink { 50% { opacity: 0.5; } }
+        /* Product Image Section */
+        .prod-container { text-align: center; background: white; padding: 20px; }
+        .prod-img { width: 250px; height: auto; transition: 0.3s; }
 
-        /* Offer Highlights */
-        .offer-box { background: #111; border: 1px dashed var(--gold); margin: 20px; padding: 15px; border-radius: 10px; text-align: center; }
-        .price-big { font-size: 24px; color: #fff; font-weight: bold; }
-        .save-tag { color: #2ecc71; font-weight: bold; font-size: 18px; }
+        /* Authorization Text (From Image 9830de) */
+        .auth-section { padding: 25px; text-align: left; background: #ffffff; margin-bottom: 10px; border-bottom: 1px solid #ddd; }
+        .auth-section h2 { color: var(--blue-link); font-size: 20px; margin-top: 0; }
+        .auth-section p { font-size: 14px; color: #555; line-height: 1.6; }
 
-        /* Form Container */
-        .order-card { max-width: 420px; margin: 20px auto; background: linear-gradient(145deg, #1a1a1a, #0d0d0d); padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
-        h2 { color: var(--gold); font-size: 22px; margin-bottom: 20px; text-align: center; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        /* Accordion Style Details (From Image 983122) */
+        .details-container { background: white; margin-bottom: 10px; }
+        .accordion { 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #eee; 
+            cursor: pointer; 
+            font-weight: bold; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            font-size: 15px;
+        }
+        .accordion:hover { background: #fafafa; }
+        .panel { 
+            display: none; 
+            padding: 15px 20px; 
+            font-size: 14px; 
+            color: #666; 
+            line-height: 1.5; 
+            background: #fff; 
+            border-bottom: 1px solid #eee;
+        }
 
-        .field { text-align: left; margin-bottom: 18px; }
-        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-        input, select, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; transition: 0.3s; }
-        input:focus, select:focus, textarea:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
+        /* Review Section (From Image 983122) */
+        .review-card { background: #fff; padding: 20px; border-bottom: 1px solid #ddd; display: flex; gap: 15px; align-items: flex-start; }
+        .review-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .stars { color: #f39c12; font-size: 12px; margin-bottom: 5px; }
 
-        .btn-confirm { width: 100%; padding: 20px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 20px rgba(212,175,55,0.3); transition: 0.3s; }
-        .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.5); }
+        /* Order Form Card */
+        .order-card { max-width: 450px; margin: 20px auto; background: #000; color: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .order-card h2 { color: var(--gold); text-align: center; font-size: 20px; text-transform: uppercase; margin-bottom: 20px; }
         
-        .trust-icons { display: flex; justify-content: space-around; margin-top: 25px; border-top: 1px solid #333; padding-top: 20px; font-size: 11px; color: #888; }
-        .icon-item { text-align: center; }
+        .field { margin-bottom: 15px; }
+        label { display: block; font-size: 11px; color: #aaa; margin-bottom: 5px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: white; font-size: 16px; box-sizing: border-box; }
         
-        #msg { display: none; padding: 40px; color: var(--gold); font-weight: bold; font-size: 24px; text-align: center; line-height: 1.5; }
+        .btn-confirm { 
+            width: 100%; padding: 18px; 
+            background: linear-gradient(45deg, var(--gold), var(--gold-dark)); 
+            color: #000; border: none; border-radius: 8px; 
+            font-size: 18px; font-weight: bold; cursor: pointer; 
+            margin-top: 10px; text-transform: uppercase;
+        }
+
+        #msg { display: none; padding: 40px; text-align: center; color: var(--gold); font-weight: bold; font-size: 22px; }
     </style>
 </head>
 <body>
 
 <div class="hero">
     <h1>THUNDER OF ZOSH</h1>
-    <p>⚡ Power • Timing • Performance ⚡</p>
-</div>
-
-<div class="benefits">
-    <div class="benefit-tag">✓ 100% Ayurvedic</div>
-    <div class="benefit-tag">✓ Timing + Erection</div>
-    <div class="benefit-tag">✓ No Side Effects</div>
 </div>
 
 <div class="prod-container">
-    <img src="model-product.jpg" class="prod-img" alt="Thunder of Zosh">
-    <br>
-    <div class="stock-tag">⚠️ ONLY 7 PACKS LEFT - SPECIAL OFFER</div>
+    <img src="model-product.jpg" class="prod-img" alt="Thunder of Zosh Gel">
 </div>
 
-<div class="offer-box">
-    <div class="price-big">Combo Pack: <span style="color: var(--gold);">₹3,999</span></div>
-    <div class="save-tag">SAVE ₹2,000 TODAY!</div>
-    <p style="font-size: 13px; margin-top: 5px;">(Single Bottle Price: ₹2,999)</p>
+<div class="auth-section">
+    <h2>All Natural Products To Help With Enhancing Men's Bodies</h2>
+    <p>Our 100% natural products are authorized and formulated to help all men, no matter age or stature. Thunder of Zosh has been specifically designed for maximum results without side effects.</p>
+</div>
+
+<div class="details-container">
+    <div class="accordion" onclick="toggleAccordion(this)">Details <span>+</span></div>
+    <div class="panel">
+        Thunder of Zosh Gel is a premium male enhancement formula. It contains a combination of herbal ingredients such as Maca root, Aloe Vera, and herbal extracts that provide rejuvenation, freshness, and warmth.
+    </div>
+
+    <div class="accordion" onclick="toggleAccordion(this)">Directions of use <span>+</span></div>
+    <div class="panel">
+        Apply a small amount of gel around the area and massage gently until fully absorbed. Use consistently for 30 days for 100% visible results.
+    </div>
+
+    <div class="accordion" onclick="toggleAccordion(this)">Ingredients <span>+</span></div>
+    <div class="panel">
+        Purified Water, Aloe Vera Extract, Maca Root, Icariin, Vanillyl Butyl, Glycerin, and Natural Herbal Performance Blends.
+    </div>
+</div>
+
+<div class="review-card">
+    <img src="https://i.pravatar.cc/100?u=joe" class="review-img">
+    <div>
+        <div class="stars">★★★★★</div>
+        <strong>Joe McG. (39)</strong><br>
+        <span style="font-size: 11px; color: #888;">(London • UK)</span>
+        <p style="font-size: 13px; margin: 8px 0; font-style: italic;">"I will admit I was hesitant at first to try Thunder of Zosh, but I was really surprised by how well it worked. I would definitely recommend it."</p>
+    </div>
 </div>
 
 <div class="order-card">
-    <h2>Delivery Details</h2>
+    <h2>Place Your Order (COD)</h2>
     <form id="zoshOrder">
         <div class="field">
-            <label>Full Name</label>
-            <input type="text" id="n" placeholder="Enter Your Name" required minlength="3">
+            <label>Your Full Name</label>
+            <input type="text" id="n" placeholder="Enter Name" required>
         </div>
 
         <div class="field">
             <label>Mobile Number</label>
-            <input type="tel" id="p" placeholder="10 Digit Phone Number" pattern="[0-9]{10}" maxlength="10" required>
+            <input type="tel" id="p" placeholder="10 Digit Number" pattern="[0-9]{10}" required>
         </div>
 
         <div class="field">
-            <label>Choose Best Offer</label>
+            <label>Best Offer For You</label>
             <select id="pkg">
-                <option value="Combo Pack - ₹3,999" selected>Combo Pack (2 Bottles) - ₹3,999 (Most Popular)</option>
+                <option value="Combo Pack - ₹3,999" selected>Combo Pack (2 Bottles) - ₹3,999 (Best Value)</option>
                 <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
             </select>
         </div>
 
         <div class="field">
-            <label>Full Shipping Address</label>
-            <textarea id="a" rows="3" placeholder="House No, Street, City, Pincode" required minlength="10"></textarea>
+            <label>Full Delivery Address</label>
+            <textarea id="a" rows="3" placeholder="Address, City, Pincode" required></textarea>
         </div>
 
-        <button type="submit" class="btn-confirm" id="b">Confirm My Order (COD)</button>
-
-        <div class="trust-icons">
-            <div class="icon-item">🚚<br>Fast Delivery</div>
-            <div class="icon-item">📦<br>Safe Packing</div>
-            <div class="icon-item">💰<br>Cash on Delivery</div>
-        </div>
+        <button type="submit" class="btn-confirm" id="b">Confirm My Order</button>
     </form>
 
     <div id="msg">
         🏆 ORDER SUCCESSFUL!<br>
-        <span style="font-size: 14px; color: #888; font-weight: normal;">Hamare executive aapko 15 mins mein call karenge.</span>
+        <span style="font-size: 14px; color: #888; font-weight: normal;">Hamare expert aapko 15 mins mein call karenge.</span>
     </div>
 </div>
 
 <script>
+    // Accordion Toggle Function
+    function toggleAccordion(element) {
+        element.classList.toggle("active");
+        var panel = element.nextElementSibling;
+        var icon = element.querySelector("span");
+        
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+            icon.innerText = "+";
+        } else {
+            panel.style.display = "block";
+            icon.innerText = "-";
+        }
+    }
+
+    // Form Submission Logic
     document.getElementById('zoshOrder').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('b');
-        btn.innerText = "VERIFYING...";
+        btn.innerText = "SAVING ORDER...";
         btn.disabled = true;
 
-        // Capturing exact timestamp for your Excel Sheet
         const data = {
             "Timestamp": new Date().toLocaleString('en-IN'), 
             "Name": document.getElementById('n').value,
@@ -129,7 +176,6 @@
             "Address": document.getElementById('a').value
         };
 
-        // Your SheetDB API - Sending to the same excel
         fetch('https://sheetdb.io/api/v1/2qqhwik4r33j0', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -141,9 +187,9 @@
             window.scrollTo(0, 0);
         })
         .catch(() => {
-            alert("Connection Error! Please check your internet.");
+            alert("Error! Please check connection.");
             btn.disabled = false;
-            btn.innerText = "Confirm My Order (COD)";
+            btn.innerText = "Confirm My Order";
         });
     });
 </script>
