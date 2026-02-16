@@ -25,4 +25,128 @@
         @keyframes blink { 50% { opacity: 0.5; } }
 
         /* Offer Highlights */
-        .offer-box { background: #111; border: 1px dashed var(--gold); margin: 20px; padding: 15px; border
+        .offer-box { background: #111; border: 1px dashed var(--gold); margin: 20px; padding: 15px; border-radius: 10px; text-align: center; }
+        .price-big { font-size: 24px; color: #fff; font-weight: bold; }
+        .save-tag { color: #2ecc71; font-weight: bold; font-size: 18px; }
+
+        /* Form Container */
+        .order-card { max-width: 420px; margin: 20px auto; background: linear-gradient(145deg, #1a1a1a, #0d0d0d); padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+        h2 { color: var(--gold); font-size: 22px; margin-bottom: 20px; text-align: center; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        .field { text-align: left; margin-bottom: 18px; }
+        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; transition: 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
+
+        .btn-confirm { width: 100%; padding: 20px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 20px rgba(212,175,55,0.3); transition: 0.3s; }
+        .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.5); }
+        
+        .trust-icons { display: flex; justify-content: space-around; margin-top: 25px; border-top: 1px solid #333; padding-top: 20px; font-size: 11px; color: #888; }
+        .icon-item { text-align: center; }
+        
+        #msg { display: none; padding: 40px; color: var(--gold); font-weight: bold; font-size: 24px; text-align: center; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>THUNDER OF ZOSH</h1>
+    <p>⚡ Power • Timing • Performance ⚡</p>
+</div>
+
+<div class="benefits">
+    <div class="benefit-tag">✓ 100% Ayurvedic</div>
+    <div class="benefit-tag">✓ Timing + Erection</div>
+    <div class="benefit-tag">✓ No Side Effects</div>
+</div>
+
+<div class="prod-container">
+    <img src="model-product.jpg" class="prod-img" alt="Thunder of Zosh">
+    <br>
+    <div class="stock-tag">⚠️ ONLY 7 PACKS LEFT - SPECIAL OFFER</div>
+</div>
+
+<div class="offer-box">
+    <div class="price-big">Combo Pack: <span style="color: var(--gold);">₹3,999</span></div>
+    <div class="save-tag">SAVE ₹2,000 TODAY!</div>
+    <p style="font-size: 13px; margin-top: 5px;">(Single Bottle Price: ₹2,999)</p>
+</div>
+
+<div class="order-card">
+    <h2>Delivery Details</h2>
+    <form id="zoshOrder">
+        <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="n" placeholder="Enter Your Name" required minlength="3">
+        </div>
+
+        <div class="field">
+            <label>Mobile Number</label>
+            <input type="tel" id="p" placeholder="10 Digit Phone Number" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div class="field">
+            <label>Choose Best Offer</label>
+            <select id="pkg">
+                <option value="Combo Pack - ₹3,999" selected>Combo Pack (2 Bottles) - ₹3,999 (Most Popular)</option>
+                <option value="Single Bottle - ₹2,999">Single Bottle - ₹2,999</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Full Shipping Address</label>
+            <textarea id="a" rows="3" placeholder="House No, Street, City, Pincode" required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn-confirm" id="b">Confirm My Order (COD)</button>
+
+        <div class="trust-icons">
+            <div class="icon-item">🚚<br>Fast Delivery</div>
+            <div class="icon-item">📦<br>Safe Packing</div>
+            <div class="icon-item">💰<br>Cash on Delivery</div>
+        </div>
+    </form>
+
+    <div id="msg">
+        🏆 ORDER SUCCESSFUL!<br>
+        <span style="font-size: 14px; color: #888; font-weight: normal;">Hamare executive aapko 15 mins mein call karenge.</span>
+    </div>
+</div>
+
+<script>
+    document.getElementById('zoshOrder').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('b');
+        btn.innerText = "VERIFYING...";
+        btn.disabled = true;
+
+        // Capturing exact timestamp for your Excel Sheet
+        const data = {
+            "Timestamp": new Date().toLocaleString('en-IN'), 
+            "Name": document.getElementById('n').value,
+            "Phone number": document.getElementById('p').value,
+            "package": document.getElementById('pkg').value,
+            "Address": document.getElementById('a').value
+        };
+
+        // Your SheetDB API - Sending to the same excel
+        fetch('https://sheetdb.io/api/v1/2qqhwik4r33j0', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        })
+        .then(() => {
+            document.getElementById('zoshOrder').style.display = 'none';
+            document.getElementById('msg').style.display = 'block';
+            window.scrollTo(0, 0);
+        })
+        .catch(() => {
+            alert("Connection Error! Please check your internet.");
+            btn.disabled = false;
+            btn.innerText = "Confirm My Order (COD)";
+        });
+    });
+</script>
+
+</body>
+</html>
