@@ -17,6 +17,8 @@
         .field-group { margin-bottom: 18px; }
         label { display: block; font-size: 11px; color: var(--gold); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
         input, select, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; }
+        .row { display: flex; gap: 10px; }
+        .row .field-group { flex: 1; }
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 5px; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
         #success-msg { display: none; padding: 60px 20px; text-align: center; }
         #success-msg h3 { color: var(--success); font-size: 24px; margin-bottom: 10px; }
@@ -39,7 +41,7 @@
     <form id="leadForm">
         <div class="field-group">
             <label>Full Name / पूरा नाम</label>
-            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="name" placeholder="Enter Full Name" required>
         </div>
 
         <div class="field-group">
@@ -48,16 +50,35 @@
         </div>
 
         <div class="field-group">
-            <label>Select Pack / पैक चुनें</label>
-            <select id="package">
-                <option value="Combo Pack (2 Bottles)" selected>Combo Pack (2 Bottles)</option>
-                <option value="Single Bottle">Single Bottle (1 Bottle)</option>
+            <label>Email Address / ईमेल</label>
+            <input type="email" id="email" placeholder="example@mail.com" required>
+        </div>
+
+        <div class="field-group">
+            <label>Select Product / प्रोडक्ट चुनें</label>
+            <select id="product" required>
+                <option value="" disabled selected>Choose a product</option>
+                <option value="Advanced Gel Formula">Advanced Gel Formula</option>
+                <option value="Zosh Tablets (30 Caps)">Zosh Tablets (30 Caps)</option>
+                <option value="Booster 3X Pills">Booster 3X Pills</option>
+                <option value="Booster Cream">Booster Cream</option>
             </select>
         </div>
 
         <div class="field-group">
             <label>Shipping Address / पूरा पता</label>
-            <textarea id="address" rows="3" placeholder="House No, City, Pincode" required></textarea>
+            <textarea id="address" rows="2" placeholder="House No, Colony, Area" required></textarea>
+        </div>
+
+        <div class="row">
+            <div class="field-group">
+                <label>City / शहर</label>
+                <input type="text" id="city" placeholder="City" required>
+            </div>
+            <div class="field-group">
+                <label>Pincode / पिनकोड</label>
+                <input type="text" id="pincode" placeholder="6 Digits" pattern="[0-9]{6}" maxlength="6" required>
+            </div>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn">Confirm Order (COD)</button>
@@ -86,13 +107,15 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // MATCHING YOUR EXCEL HEADINGS EXACTLY
         const data = {
             "Timestamp": new Date().toLocaleString('en-IN'),
             "Name": document.getElementById('name').value,
             "Phone": document.getElementById('phone').value,
-            "Package": document.getElementById('package').value,
+            "Email": document.getElementById('email').value,
+            "Product": document.getElementById('product').value,
             "Address": document.getElementById('address').value,
+            "City": document.getElementById('city').value,
+            "Pincode": document.getElementById('pincode').value,
             "Method": "COD"
         };
 
