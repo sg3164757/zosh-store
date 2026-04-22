@@ -98,52 +98,55 @@
 </div>
 
 <script>
-    // Webhook URL updated according to your CRM environment
+    // CRM Webhook URL
     const webhookURL = 'https://ais-dev-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
     const form = document.getElementById('leadForm');
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         const originalText = btn.innerHTML;
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // CRM mapping matching the server expectations
         const data = {
             "name": document.getElementById('name').value,
             "phone": document.getElementById('phone').value,
             "email": document.getElementById('email').value,
-            "product": document.getElementById('product').value, // Matches CRM product field
+            "product": document.getElementById('product').value,
             "address": document.getElementById('address').value,
             "city": document.getElementById('city').value,
             "pincode": document.getElementById('pincode').value,
-            "source": "Website Form", // Source identify
+            "source": "Website Form",
             "quantity": 1
         };
 
-        fetch(webhookURL, {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
+        try {
+            const response = await fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
             if (response.ok) {
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('mainHeader').style.display = 'none'; 
                 document.getElementById('success-msg').style.display = 'block';
                 window.scrollTo(0, 0);
             } else {
-                throw new Error('CRM Response Error');
+                // If the CRM says something is wrong, show the detail
+                alert('CRM Error: ' + (result.details || result.error || 'Unknown Error'));
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Order saving failed. Please check your internet or try again.');
+        } catch (error) {
+            console.error('Connection Error:', error);
+            alert('Connection Failed! Could not reach the CRM server. Please check if the CRM is running.');
             btn.innerHTML = originalText;
             btn.disabled = false;
-        });
+        }
     });
 </script>
 
