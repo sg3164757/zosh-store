@@ -98,8 +98,9 @@
 </div>
 
 <script>
-    // CRM Webhook URL
-    const webhookURL = 'https://ais-dev-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
+    // ✅ SHARED PUBLIC URL (यह पब्लिकली काम करेगा)
+    const webhookURL = 'https://ais-pre-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
+    
     const form = document.getElementById('leadForm');
 
     form.addEventListener('submit', async e => {
@@ -117,13 +118,14 @@
             "address": document.getElementById('address').value,
             "city": document.getElementById('city').value,
             "pincode": document.getElementById('pincode').value,
-            "source": "Website Form",
+            "source": "Order Form",
             "quantity": 1
         };
 
         try {
             const response = await fetch(webhookURL, {
                 method: 'POST',
+                mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
@@ -136,14 +138,13 @@
                 document.getElementById('success-msg').style.display = 'block';
                 window.scrollTo(0, 0);
             } else {
-                // If the CRM says something is wrong, show the detail
                 alert('CRM Error: ' + (result.details || result.error || 'Unknown Error'));
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         } catch (error) {
             console.error('Connection Error:', error);
-            alert('Connection Failed! Could not reach the CRM server. Please check if the CRM is running.');
+            alert('Connection Failed! Please make sure you are using the Shared URL and the CRM is active.');
             btn.innerHTML = originalText;
             btn.disabled = false;
         }
