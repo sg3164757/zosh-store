@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form | Thunder of Zosh</title>
+    <title>Order Form | CRM Integrated</title>
     <style>
         :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --success: #2ecc71; --field-bg: #1a1a1a; }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
@@ -98,7 +98,8 @@
 </div>
 
 <script>
-    const scriptURL = 'https://sheetdb.io/api/v1/o0o8niq42cwl8'; 
+    // Webhook URL from your CRM
+    const webhookURL = 'https://ais-dev-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
     const form = document.getElementById('leadForm');
 
     form.addEventListener('submit', e => {
@@ -107,31 +108,38 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
+        // CRM data mapping
         const data = {
-            "Timestamp": new Date().toLocaleString('en-IN'),
-            "Name": document.getElementById('name').value,
-            "Phone": document.getElementById('phone').value,
-            "Email": document.getElementById('email').value,
-            "Product": document.getElementById('product').value,
-            "Address": document.getElementById('address').value,
-            "City": document.getElementById('city').value,
-            "Pincode": document.getElementById('pincode').value,
-            "Method": "COD"
+            "name": document.getElementById('name').value,
+            "phone": document.getElementById('phone').value,
+            "email": document.getElementById('email').value,
+            "product_name": document.getElementById('product').value,
+            "address": document.getElementById('address').value,
+            "city": document.getElementById('city').value,
+            "pincode": document.getElementById('pincode').value,
+            "source": "Order Form",
+            "method": "COD",
+            "timestamp": new Date().toISOString()
         };
 
-        fetch(scriptURL, {
+        fetch(webhookURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: [data] })
+            body: JSON.stringify(data)
         })
         .then(response => {
-            document.getElementById('leadForm').style.display = 'none';
-            document.getElementById('mainHeader').style.display = 'none'; 
-            document.getElementById('success-msg').style.display = 'block';
-            window.scrollTo(0, 0);
+            if (response.ok) {
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('mainHeader').style.display = 'none'; 
+                document.getElementById('success-msg').style.display = 'block';
+                window.scrollTo(0, 0);
+            } else {
+                throw new Error('CRM response error');
+            }
         })
         .catch(error => {
-            alert('Error! Check connection.');
+            console.error('Error:', error);
+            alert('Something went wrong. Please try again.');
             btn.innerHTML = "Confirm Order (COD)";
             btn.disabled = false;
         });
