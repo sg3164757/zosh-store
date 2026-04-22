@@ -31,7 +31,7 @@
 
 <div class="order-container">
     <div class="form-header" id="mainHeader">
-        <img src="model-product.jpg" alt="Zosh" class="header-model-photo">
+        <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=200&h=200&fit=crop" alt="Product" class="header-model-photo">
         <div class="header-text">
             <h2>Claim Your Pack</h2>
             <p>⚡ Cash on Delivery Available</p>
@@ -84,7 +84,7 @@
         <button type="submit" class="btn-submit" id="submitBtn">Confirm Order (COD)</button>
     </form>
 
-    <div id="success-msg">
+    <div id="success-msg" style="display: none; padding: 60px 20px; text-align: center;">
         <div style="font-size: 50px;">✅</div>
         <h3>ORDER PLACED!</h3>
         <p style="color: #ccc;">Team will call you soon for confirmation.</p>
@@ -98,32 +98,33 @@
 </div>
 
 <script>
-    // Webhook URL from your CRM
+    // Webhook URL updated according to your CRM environment
     const webhookURL = 'https://ais-dev-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
     const form = document.getElementById('leadForm');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerHTML;
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // CRM data mapping
+        // CRM mapping matching the server expectations
         const data = {
             "name": document.getElementById('name').value,
             "phone": document.getElementById('phone').value,
             "email": document.getElementById('email').value,
-            "product_name": document.getElementById('product').value,
+            "product": document.getElementById('product').value, // Matches CRM product field
             "address": document.getElementById('address').value,
             "city": document.getElementById('city').value,
             "pincode": document.getElementById('pincode').value,
-            "source": "Order Form",
-            "method": "COD",
-            "timestamp": new Date().toISOString()
+            "source": "Website Form", // Source identify
+            "quantity": 1
         };
 
         fetch(webhookURL, {
             method: 'POST',
+            mode: 'cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
@@ -134,13 +135,13 @@
                 document.getElementById('success-msg').style.display = 'block';
                 window.scrollTo(0, 0);
             } else {
-                throw new Error('CRM response error');
+                throw new Error('CRM Response Error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Something went wrong. Please try again.');
-            btn.innerHTML = "Confirm Order (COD)";
+            alert('Order saving failed. Please check your internet or try again.');
+            btn.innerHTML = originalText;
             btn.disabled = false;
         });
     });
