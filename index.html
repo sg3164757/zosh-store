@@ -59,7 +59,7 @@
             <select id="product" required>
                 <option value="" disabled selected>Choose a product</option>
                 <option value="Advanced Gel Formula">Advanced Gel Formula</option>
-                <option value="Zosh Tablets (30 Caps)">Zosh Tablets (30 Caps)</option>
+                <option value="Zosh Tablets (30 Caps)">Zosh Tablets (30 Caps) </option>
                 <option value="Booster 3X Pills">Booster 3X Pills</option>
                 <option value="Booster Cream">Booster Cream</option>
             </select>
@@ -98,7 +98,6 @@
 </div>
 
 <script>
-    // ✅ SHARED URL ONLY
     const webhookURL = 'https://ais-pre-mva2a3sydgwye2dzqck4zk-250604477237.asia-southeast1.run.app/api/webhook/lead';
 
     const form = document.getElementById('leadForm');
@@ -107,7 +106,7 @@
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         const originalText = btn.innerHTML;
-        btn.innerHTML = "Wait...";
+        btn.innerHTML = "CHECKING CONNECTION...";
         btn.disabled = true;
 
         const data = {
@@ -118,14 +117,13 @@
             "address": document.getElementById('address').value,
             "city": document.getElementById('city').value,
             "pincode": document.getElementById('pincode').value,
-            "source": "Github Form",
+            "source": "Github Final v2",
             "quantity": 1
         };
 
         try {
             const response = await fetch(webhookURL, {
                 method: 'POST',
-                // Removed mode:cors for default browser behavior
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
@@ -136,16 +134,15 @@
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('mainHeader').style.display = 'none'; 
                 document.getElementById('success-msg').style.display = 'block';
-                window.scrollTo(0, 0);
             } else {
-                alert('CRM Rejected Data: ' + (result.details || result.error || 'Server Side Issue'));
+                alert('DEBUG ERROR 1: ' + JSON.stringify(result));
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         } catch (error) {
-            console.error('DEBUG:', error);
-            // ✅ Detailed error message
-            alert('SYSTEM ERROR:\n1. Open AI Studio\n2. Click "Share" top right\n3. If already shared, unshare and share again.\n\nTechnical Details: ' + error.message);
+            console.error('FETCH ERROR:', error);
+            // ✅ नई अलर्ट मैसेज (यदि यह दिखे तो बताना)
+            alert('DEBUG ERROR 2 (Connection):\nReason: ' + error.message + '\n\nMake sure browser is not blocking the connection.');
             btn.innerHTML = originalText;
             btn.disabled = false;
         }
